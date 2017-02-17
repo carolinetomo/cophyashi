@@ -1,0 +1,99 @@
+Optimization terminated successfully.
+         Current function value: 4.598961
+         Iterations: 2
+         Function evaluations: 63
+['t1']
+Optimization terminated successfully.
+         Current function value: 4.598961
+         Iterations: 2
+         Function evaluations: 63
+['t2']
+Optimization terminated successfully.
+         Current function value: 4.598961
+         Iterations: 2
+         Function evaluations: 63
+['t9']
+Optimization terminated successfully.
+         Current function value: 4.598961
+         Iterations: 2
+         Function evaluations: 63
+['t10']
+Optimization terminated successfully.
+         Current function value: 3.399449
+         Iterations: 2
+         Function evaluations: 107
+['t9', 't10']
+Optimization terminated successfully.
+         Current function value: 4.122906
+         Iterations: 2
+         Function evaluations: 108
+['t2', 't9', 't10']
+Optimization terminated successfully.
+         Current function value: 4.598961
+         Iterations: 2
+         Function evaluations: 63
+['t8']
+Optimization terminated successfully.
+         Current function value: 4.598961
+         Iterations: 2
+         Function evaluations: 63
+['t7']
+Optimization terminated successfully.
+         Current function value: 4.598961
+         Iterations: 2
+         Function evaluations: 63
+['t6']
+Optimization terminated successfully.
+         Current function value: 4.350851
+         Iterations: 2
+         Function evaluations: 118
+['t7', 't6']
+Optimization terminated successfully.
+         Current function value: 4.381597
+         Iterations: 2
+         Function evaluations: 108
+['t8', 't7', 't6']
+Optimization terminated successfully.
+         Current function value: 4.598961
+         Iterations: 2
+         Function evaluations: 63
+['t4']
+Optimization terminated successfully.
+         Current function value: 4.598961
+         Iterations: 2
+         Function evaluations: 63
+['t5']
+Optimization terminated successfully.
+         Current function value: 4.592526
+         Iterations: 2
+         Function evaluations: 107
+['t4', 't5']
+Optimization terminated successfully.
+         Current function value: 4.591431
+         Iterations: 2
+         Function evaluations: 106
+['t8', 't7', 't6', 't4', 't5']
+Optimization terminated successfully.
+         Current function value: 4.598961
+         Iterations: 2
+         Function evaluations: 63
+['t3']
+Optimization terminated successfully.
+         Current function value: 4.496817
+         Iterations: 2
+         Function evaluations: 107
+['t8', 't7', 't6', 't4', 't5', 't3']
+Optimization terminated successfully.
+         Current function value: 4.298930
+         Iterations: 2
+         Function evaluations: 151
+['t2', 't9', 't10', 't8', 't7', 't6', 't4', 't5', 't3']
+Optimization terminated successfully.
+         Current function value: 4.598961
+         Iterations: 2
+         Function evaluations: 63
+['t1', 't2', 't9', 't10', 't8', 't7', 't6', 't4', 't5', 't3']
+Optimization terminated successfully.
+         Current function value: 4.598961
+         Iterations: 2
+         Function evaluations: 39
