@@ -79,7 +79,7 @@ def bm_like(sigsq,cur_var,contrast):
 
 def find_shifts(tree,traits,stop=2,cutoff=2):
     start = [random.uniform(0.0,2.0)]
-    single = optimize.fmin_powell(calc_like_single,start,args=(tree,traits),full_output=True)
+    single = optimize.fmin_powell(calc_like_single,start,args=(tree,traits),full_output=True,disp=False)
     curlike = 0.0 
     curbest = 100000000
     best_node = None
@@ -91,7 +91,7 @@ def find_shifts(tree,traits,stop=2,cutoff=2):
         shifts[i] = 1
         paint_branches(tree,shifts)
         start = [0.5,0.5]
-        opt = optimize.fmin_powell(calc_like_multi,start,args=(tree,traits),full_output =True)
+        opt = optimize.fmin_powell(calc_like_multi,start,args=(tree,traits),full_output =True,disp=False)
         curlike = opt[1]
         if curlike < curbest:
             curbest = curlike
@@ -99,8 +99,26 @@ def find_shifts(tree,traits,stop=2,cutoff=2):
             best_tree = tree.get_newick_repr(showbl=False,show_rate=True)
     single_aic = 2. * (1-single[1])
     two_aic = 2.*(3-curbest)
+    likes=[single[1],curbest]
     aic = [single_aic,two_aic]
-    return [aic]#curbest,best_tree]
+    for i in tree.iternodes(order=1):
+        for j in tree.iternodes(order=1):
+            if i == j:
+                continue
+            shifts={}
+            shifts[i]=1
+            shifts[j]=2
+            paint_branches(tree,shifts)
+            start = [0.5,0.5,0.5]
+            opt = optimize.fmin_powell(calc_like_multi,start,args=(tree,traits),full_output= True,disp=False)
+            curlike = opt[1]
+            if curlike < curbest:
+                curbest = curlike
+                best_nodes = shifts
+    likes.append(curbest)
+    three_aic = 2.*(5-curbest)
+    aic.append(three_aic)
+    return [curbest,best_tree]
 
 
 
