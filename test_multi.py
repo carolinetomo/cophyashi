@@ -2,13 +2,13 @@ import calc_bm_likelihood as brownian
 import phylo3
 from scipy import optimize
 
-tree = brownian.read_tree("0.mcc.tre")
+tree = brownian.read_tree("test_data/0.mcc.tre")
 
 for i in tree.iternodes(order=1):
     shifts ={}
     shifts[i] = 1
     brownian.paint_branches(tree,shifts)
-    traits = brownian.read_traits("multi_traits.csv")
+    traits = brownian.read_traits("./test_data/multi_traits_t6_t7_t9_t10.csv")
     a = [0.1,0.1]
     optimize.fmin_powell(brownian.calc_like_multi,a,args=(tree,traits))
     print [j.label for j in i.leaves()]
@@ -21,15 +21,15 @@ for i in tree.iternodes(order=1):
 
 #brownian.paint_branches(tree,shifts)
 
-traits = brownian.read_traits("multi_traits.csv")
+#traits = brownian.read_traits("multi_traits.csv")
 #newtree = brownian.assign_sigsq(tree)
 
 #print brownian.bm_prune(newtree,traits)
 #print brownian.bm_prune(newtree,traits)
 #a = [0.1,0.1]
 #optimize.fmin_powell(brownian.calc_like_multi,a,args=(tree,traits))
-a = [0.1]
-optimize.fmin_powell(brownian.calc_like_single,a,args=(tree,traits))
+#a = [0.1]
+#optimize.fmin_powell(brownian.calc_like_single,a,args=(tree,traits))
 
 
 
