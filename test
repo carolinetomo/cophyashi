@@ -1,99 +1,95 @@
 Optimization terminated successfully.
-         Current function value: 4.598961
+         Current function value: 6.354115
          Iterations: 2
-         Function evaluations: 63
+         Function evaluations: 62
 ['t1']
 Optimization terminated successfully.
-         Current function value: 4.598961
+         Current function value: 6.354115
          Iterations: 2
-         Function evaluations: 63
+         Function evaluations: 62
 ['t2']
 Optimization terminated successfully.
-         Current function value: 4.598961
+         Current function value: 6.354115
          Iterations: 2
-         Function evaluations: 63
+         Function evaluations: 62
 ['t9']
 Optimization terminated successfully.
-         Current function value: 4.598961
+         Current function value: 6.354115
          Iterations: 2
-         Function evaluations: 63
+         Function evaluations: 62
 ['t10']
 Optimization terminated successfully.
-         Current function value: 3.399449
+         Current function value: 5.808956
          Iterations: 2
-         Function evaluations: 107
+         Function evaluations: 79
 ['t9', 't10']
 Optimization terminated successfully.
-         Current function value: 4.122906
+         Current function value: 5.605927
          Iterations: 2
-         Function evaluations: 108
+         Function evaluations: 115
 ['t2', 't9', 't10']
 Optimization terminated successfully.
-         Current function value: 4.598961
+         Current function value: 6.354115
          Iterations: 2
-         Function evaluations: 63
+         Function evaluations: 62
 ['t8']
 Optimization terminated successfully.
-         Current function value: 4.598961
+         Current function value: 6.354115
          Iterations: 2
-         Function evaluations: 63
+         Function evaluations: 62
 ['t7']
 Optimization terminated successfully.
-         Current function value: 4.598961
+         Current function value: 6.354115
          Iterations: 2
-         Function evaluations: 63
+         Function evaluations: 62
 ['t6']
 Optimization terminated successfully.
-         Current function value: 4.350851
+         Current function value: 5.871350
          Iterations: 2
-         Function evaluations: 118
+         Function evaluations: 150
 ['t7', 't6']
 Optimization terminated successfully.
-         Current function value: 4.381597
-         Iterations: 2
-         Function evaluations: 108
+         Current function value: 4.614320
+         Iterations: 3
+         Function evaluations: 164
 ['t8', 't7', 't6']
 Optimization terminated successfully.
-         Current function value: 4.598961
+         Current function value: 6.354115
          Iterations: 2
-         Function evaluations: 63
+         Function evaluations: 62
 ['t4']
 Optimization terminated successfully.
-         Current function value: 4.598961
+         Current function value: 6.354115
          Iterations: 2
-         Function evaluations: 63
+         Function evaluations: 62
 ['t5']
 Optimization terminated successfully.
-         Current function value: 4.592526
+         Current function value: 5.068226
          Iterations: 2
          Function evaluations: 107
 ['t4', 't5']
 Optimization terminated successfully.
-         Current function value: 4.591431
+         Current function value: 6.270026
          Iterations: 2
-         Function evaluations: 106
+         Function evaluations: 67
 ['t8', 't7', 't6', 't4', 't5']
 Optimization terminated successfully.
-         Current function value: 4.598961
+         Current function value: 6.354115
          Iterations: 2
-         Function evaluations: 63
+         Function evaluations: 62
 ['t3']
 Optimization terminated successfully.
-         Current function value: 4.496817
+         Current function value: 6.341457
          Iterations: 2
-         Function evaluations: 107
+         Function evaluations: 67
 ['t8', 't7', 't6', 't4', 't5', 't3']
 Optimization terminated successfully.
-         Current function value: 4.298930
-         Iterations: 2
-         Function evaluations: 151
+         Current function value: 4.343749
+         Iterations: 3
+         Function evaluations: 139
 ['t2', 't9', 't10', 't8', 't7', 't6', 't4', 't5', 't3']
 Optimization terminated successfully.
-         Current function value: 4.598961
+         Current function value: 6.354115
          Iterations: 2
-         Function evaluations: 63
+         Function evaluations: 62
 ['t1', 't2', 't9', 't10', 't8', 't7', 't6', 't4', 't5', 't3']
-Optimization terminated successfully.
-         Current function value: 4.598961
-         Iterations: 2
-         Function evaluations: 39

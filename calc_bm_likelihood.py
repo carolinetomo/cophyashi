@@ -61,7 +61,7 @@ def calc_like_multi(params,tree,traits):
         val = -bm_prune(tree,traits)
     except:
         return 1000000000
-    #print val,params
+    print val,params
     return val
 
 def calc_like_single(params,tree,traits):
