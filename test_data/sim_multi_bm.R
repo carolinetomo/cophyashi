@@ -1,11 +1,12 @@
 require(phytools)
 
-tree <- read.tree("0.mcc.tre")
+tree <- read.tree("hap.tre")
 
-Q<-matrix(c(-0.3,0.3,0.3,-0.3),2,2)
+rate<-0.05
+Q<-matrix(c(-rate,rate,rate,-rate),2,2)
 mtree<-sim.history(tree,Q)
 plotSimmap(mtree)
-rates<-c(0.05,1.0); names(rates)<-c(1,2)
+rates<-c(0.05,1.5); names(rates)<-c(1,2)
 x<-sim.rates(mtree,sig2=rates,plot=F)
 
 

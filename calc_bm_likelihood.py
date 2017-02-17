@@ -118,7 +118,8 @@ def find_shifts(tree,traits,stop=2,cutoff=2):
     likes.append(curbest)
     three_aic = 2.*(5-curbest)
     aic.append(three_aic)
-    return [curbest,best_tree]
+    [i.label for i in best_nodes.keys()[0].leaves()]
+    return [i.label for i in best_nodes.keys()[1].leaves()]#,curbest,best_tree]
 
 
 
