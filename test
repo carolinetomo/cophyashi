@@ -2,94 +2,213 @@ Optimization terminated successfully.
          Current function value: 6.354115
          Iterations: 2
          Function evaluations: 62
+(array([ 0.399868  ,  5.28554974]), 6.3541145099258989, array([[ 0.        ,  1.        ],
+       [ 0.00112306,  0.00972859]]), 2, 62, 0)
 ['t1']
 Optimization terminated successfully.
          Current function value: 6.354115
          Iterations: 2
          Function evaluations: 62
+(array([ 0.399868  ,  5.28554974]), 6.3541145099258989, array([[ 0.        ,  1.        ],
+       [ 0.00112306,  0.00972859]]), 2, 62, 0)
 ['t2']
 Optimization terminated successfully.
          Current function value: 6.354115
          Iterations: 2
          Function evaluations: 62
+(array([ 0.399868  ,  5.28554974]), 6.3541145099258989, array([[ 0.        ,  1.        ],
+       [ 0.00112306,  0.00972859]]), 2, 62, 0)
 ['t9']
 Optimization terminated successfully.
          Current function value: 6.354115
          Iterations: 2
          Function evaluations: 62
+(array([ 0.399868  ,  5.28554974]), 6.3541145099258989, array([[ 0.        ,  1.        ],
+       [ 0.00112306,  0.00972859]]), 2, 62, 0)
 ['t10']
 Optimization terminated successfully.
          Current function value: 5.808956
          Iterations: 2
          Function evaluations: 79
+(array([ 0.44234524,  0.0598885 ]), 5.8089557002613095, array([[  0.00000000e+00,   1.00000000e+00],
+       [  1.26524760e-03,  -1.49142812e-04]]), 2, 79, 0)
 ['t9', 't10']
 Optimization terminated successfully.
          Current function value: 5.605927
          Iterations: 2
          Function evaluations: 115
+(array([ 0.48785971,  0.09491773]), 5.6059270026643588, array([[ 0.,  1.],
+       [ 0., -0.]]), 2, 115, 0)
 ['t2', 't9', 't10']
 Optimization terminated successfully.
          Current function value: 6.354115
          Iterations: 2
          Function evaluations: 62
+(array([ 0.399868  ,  5.28554974]), 6.3541145099258989, array([[ 0.        ,  1.        ],
+       [ 0.00112306,  0.00972859]]), 2, 62, 0)
 ['t8']
 Optimization terminated successfully.
          Current function value: 6.354115
          Iterations: 2
          Function evaluations: 62
+(array([ 0.399868  ,  5.28554974]), 6.3541145099258989, array([[ 0.        ,  1.        ],
+       [ 0.00112306,  0.00972859]]), 2, 62, 0)
 ['t7']
 Optimization terminated successfully.
          Current function value: 6.354115
          Iterations: 2
          Function evaluations: 62
+(array([ 0.399868  ,  5.28554974]), 6.3541145099258989, array([[ 0.        ,  1.        ],
+       [ 0.00112306,  0.00972859]]), 2, 62, 0)
 ['t6']
 Optimization terminated successfully.
          Current function value: 5.871350
          Iterations: 2
          Function evaluations: 150
+(array([ 0.4421468,  0.1      ]), 5.8713501734847879, array([[ 0.        ,  1.        ],
+       [ 0.00146308,  0.        ]]), 2, 150, 0)
 ['t7', 't6']
 Optimization terminated successfully.
          Current function value: 4.614320
          Iterations: 3
          Function evaluations: 164
+(array([ 0.50375981,  0.03638611]), 4.6143199374333488, array([[ 1.,  0.],
+       [ 0.,  1.]]), 3, 164, 0)
 ['t8', 't7', 't6']
 Optimization terminated successfully.
          Current function value: 6.354115
          Iterations: 2
          Function evaluations: 62
+(array([ 0.399868  ,  5.28554974]), 6.3541145099258989, array([[ 0.        ,  1.        ],
+       [ 0.00112306,  0.00972859]]), 2, 62, 0)
 ['t4']
 Optimization terminated successfully.
          Current function value: 6.354115
          Iterations: 2
          Function evaluations: 62
+(array([ 0.399868  ,  5.28554974]), 6.3541145099258989, array([[ 0.        ,  1.        ],
+       [ 0.00112306,  0.00972859]]), 2, 62, 0)
 ['t5']
 Optimization terminated successfully.
          Current function value: 5.068226
          Iterations: 2
          Function evaluations: 107
+(array([ 0.24273258,  1.65679773]), 5.0682264284650138, array([[ 1.,  0.],
+       [ 0.,  0.]]), 2, 107, 0)
 ['t4', 't5']
 Optimization terminated successfully.
          Current function value: 6.270026
          Iterations: 2
          Function evaluations: 67
+(array([ 0.33038966,  0.48671192]), 6.270025772929511, array([[  1.00000000e+00,   0.00000000e+00],
+       [  5.40911782e-04,   9.07858143e-04]]), 2, 67, 0)
 ['t8', 't7', 't6', 't4', 't5']
 Optimization terminated successfully.
          Current function value: 6.354115
          Iterations: 2
          Function evaluations: 62
+(array([ 0.399868  ,  5.28554974]), 6.3541145099258989, array([[ 0.        ,  1.        ],
+       [ 0.00112306,  0.00972859]]), 2, 62, 0)
 ['t3']
 Optimization terminated successfully.
          Current function value: 6.341457
          Iterations: 2
          Function evaluations: 67
+(array([ 0.36624844,  0.42678915]), 6.3414571206519668, array([[  1.00000000e+00,   0.00000000e+00],
+       [ -6.02919993e-04,  -7.42128559e-04]]), 2, 67, 0)
 ['t8', 't7', 't6', 't4', 't5', 't3']
 Optimization terminated successfully.
          Current function value: 4.343749
          Iterations: 3
          Function evaluations: 139
+(array([ 0.00279505,  0.44949984]), 4.3437491506012886, array([[ 1.,  0.],
+       [ 0.,  1.]]), 3, 139, 0)
 ['t2', 't9', 't10', 't8', 't7', 't6', 't4', 't5', 't3']
 Optimization terminated successfully.
          Current function value: 6.354115
          Iterations: 2
          Function evaluations: 62
+(array([ 5.28554974,  0.399868  ]), 6.3541145099258989, array([[ 1.        ,  0.        ],
+       [ 0.00972859,  0.00112306]]), 2, 62, 0)
 ['t1', 't2', 't9', 't10', 't8', 't7', 't6', 't4', 't5', 't3']
+Optimization terminated successfully.
+         Current function value: 6.354115
+         Iterations: 2
+         Function evaluations: 32
+Optimization terminated successfully.
+         Current function value: 6.354115
+         Iterations: 2
+         Function evaluations: 57
+Optimization terminated successfully.
+         Current function value: 6.354115
+         Iterations: 2
+         Function evaluations: 57
+Optimization terminated successfully.
+         Current function value: 6.354115
+         Iterations: 2
+         Function evaluations: 57
+Optimization terminated successfully.
+         Current function value: 6.354115
+         Iterations: 2
+         Function evaluations: 57
+Optimization terminated successfully.
+         Current function value: 5.837769
+         Iterations: 2
+         Function evaluations: 141
+Optimization terminated successfully.
+         Current function value: 5.607126
+         Iterations: 2
+         Function evaluations: 142
+Optimization terminated successfully.
+         Current function value: 6.354115
+         Iterations: 2
+         Function evaluations: 57
+Optimization terminated successfully.
+         Current function value: 6.354115
+         Iterations: 2
+         Function evaluations: 57
+Optimization terminated successfully.
+         Current function value: 6.354115
+         Iterations: 2
+         Function evaluations: 57
+Optimization terminated successfully.
+         Current function value: 5.629495
+         Iterations: 3
+         Function evaluations: 186
+Optimization terminated successfully.
+         Current function value: 4.737775
+         Iterations: 2
+         Function evaluations: 101
+Optimization terminated successfully.
+         Current function value: 6.354115
+         Iterations: 2
+         Function evaluations: 57
+Optimization terminated successfully.
+         Current function value: 6.354115
+         Iterations: 2
+         Function evaluations: 57
+Optimization terminated successfully.
+         Current function value: 5.068226
+         Iterations: 2
+         Function evaluations: 55
+Optimization terminated successfully.
+         Current function value: 5.956390
+         Iterations: 2
+         Function evaluations: 148
+Optimization terminated successfully.
+         Current function value: 6.354115
+         Iterations: 2
+         Function evaluations: 57
+Optimization terminated successfully.
+         Current function value: 6.104977
+         Iterations: 2
+         Function evaluations: 147
+Optimization terminated successfully.
+         Current function value: 6.436669
+         Iterations: 2
+         Function evaluations: 144
+Optimization terminated successfully.
+         Current function value: 6.354115
+         Iterations: 2
+         Function evaluations: 57
+[['0.01', 1], ['t1', 1], ['', 1], ['', 1], ['t2', 1], ['', 1], ['t9', 1], ['t10', 1], ['', 1], ['', 1], ['', 1], ['t8', 1], ['', 1], ['t7', 1], ['t6', 1], ['', 1], ['t4', 1], ['t5', 1], ['t3', 1]]

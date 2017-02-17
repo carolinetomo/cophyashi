@@ -1,6 +1,7 @@
 from scipy import optimize
 import math
 import tree_reader
+from numpy import random
 
 def bm_prune(tree,traits):
     trait_likes = []
@@ -61,7 +62,7 @@ def calc_like_multi(params,tree,traits):
         val = -bm_prune(tree,traits)
     except:
         return 1000000000
-    print val,params
+    #print val,params
     return val
 
 def calc_like_single(params,tree,traits):
@@ -75,6 +76,33 @@ def calc_like_single(params,tree,traits):
 
 def bm_like(sigsq,cur_var,contrast):
     return ((-0.5)* ((math.log(2*math.pi*sigsq))+(math.log(cur_var))+(math.pow(contrast,2)/(sigsq*cur_var))))
+
+def find_shifts(tree,traits,stop=2,cutoff=2):
+    start = [random.uniform(0.0,2.0)]
+    single = optimize.fmin_powell(calc_like_single,start,args=(tree,traits),full_output=True)
+    curlike = 0.0 
+    curbest = 100000000
+    best_node = None
+    best_tree = None
+    for i in tree.iternodes(order=1):
+        if best_node == None:
+            best_node = i
+        shifts = {}
+        shifts[i] = 1
+        paint_branches(tree,shifts)
+        start = [0.5,0.5]
+        opt = optimize.fmin_powell(calc_like_multi,start,args=(tree,traits),full_output =True)
+        curlike = opt[1]
+        if curlike < curbest:
+            curbest = curlike
+            best_node = i
+            best_tree = tree.get_newick_repr(showbl=False,show_rate=True)
+    single_aic = 2. * (1-single[1])
+    two_aic = 2.*(3-curbest)
+    aic = [single_aic,two_aic]
+    return [aic]#curbest,best_tree]
+
+
 
 def match_traits_tips(tree,traits,number):
     for i in tree.leaves():

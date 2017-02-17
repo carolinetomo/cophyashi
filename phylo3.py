@@ -20,12 +20,12 @@ class Node:
         self.rate_class = 0
 
 
-    def get_newick_repr(self,showbl=False):
+    def get_newick_repr(self,showbl=False,show_rate=False):
         ret = ""
         for i in range(len(self.children)):
             if i == 0:
                 ret += "("
-            ret += self.children[i].get_newick_repr(showbl)
+            ret += self.children[i].get_newick_repr(showbl,show_rate)
             if i == len(self.children)-1:
                 ret += ")"
             else:
@@ -34,6 +34,8 @@ class Node:
             ret += self.label
         if showbl == True:
             ret += ":" + str(self.length)
+        if show_rate ==True:
+            ret += ":" + str(self.sigsq)
         return ret
 
     def order_subtrees_by_size(self, n2s=None, recurse=False, reverse=False):

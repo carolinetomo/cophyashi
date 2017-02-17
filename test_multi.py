@@ -3,15 +3,22 @@ import phylo3
 from scipy import optimize
 
 tree = brownian.read_tree("test_data/0.mcc.tre")
+traits = brownian.read_traits("./test_data/multi_traits_t6_t7_t9_t10.csv")
 
-for i in tree.iternodes(order=1):
-    shifts ={}
-    shifts[i] = 1
-    brownian.paint_branches(tree,shifts)
-    traits = brownian.read_traits("./test_data/multi_traits_t6_t7_t9_t10.csv")
-    a = [0.1,0.1]
-    optimize.fmin_powell(brownian.calc_like_multi,a,args=(tree,traits))
-    print [j.label for j in i.leaves()]
+#for i in tree.iternodes(order=1):
+#    shifts ={}
+#    shifts[i] = 1
+#    brownian.paint_branches(tree,shifts)
+#    traits = brownian.read_traits("./test_data/multi_traits_t6_t7_t9_t10.csv")
+#    a = [0.1,0.1]
+#    opt = optimize.fmin_powell(brownian.calc_like_multi,a,args=(tree,traits),full_output = True)
+#    print opt#[0]
+#    print [j.label for j in i.leaves()]
+
+a = brownian.find_shifts(tree, traits)
+
+print a#[1]
+#    print [j.label for j in i.leaves()]
 
 #mrca = phylo3.getMRCA(["t6","t7"],tree)
 #shifts = {}
