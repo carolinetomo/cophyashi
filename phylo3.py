@@ -18,7 +18,8 @@ class Node:
         self.charst = 0.
         self.sigsq = 0.
         self.rate_class = 0
-
+        self.height = None#0.
+        self.number = 0
 
     def get_newick_repr(self,showbl=False,show_rate=False):
         ret = ""
@@ -159,7 +160,6 @@ class Node:
                 n = n.parent
             else:
                 break
-            
 
     def subtree_mapping(self, labels, clean=False):
         """
@@ -225,6 +225,9 @@ class Node:
                         break
             
         return d
+
+
+
 
 
 def node2size(node, d=None):
