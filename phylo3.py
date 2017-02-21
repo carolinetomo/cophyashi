@@ -161,6 +161,28 @@ class Node:
             else:
                 break
 
+    def tip_labels(self):
+        labs = []
+        for i in self.leaves():
+            labs.append(i.label)
+        return labs
+
+    def nnodes(self, type="internal"):
+        n = 0
+        if type == "internal":
+            for i in self.iternodes():
+                if i.istip or i == self:
+                    continue
+                n += 1
+        elif type == "all":
+            for i in self.iternodes():
+                n+=1
+        elif type == "tips":
+            for i in self.iternodes():
+                if i.istip:
+                    n+=1
+        return n
+
     def subtree_mapping(self, labels, clean=False):
         """
         find the set of nodes in 'labels', and create a new tree
@@ -327,7 +349,8 @@ def traverse(curn,order="preorder"):
     for i in curn.children:
         for j in traverse(i,order):
             yield j
-    
+
+
 
 
 

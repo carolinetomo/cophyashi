@@ -2,6 +2,7 @@ import calc_bm_likelihood as brownian
 import phylo3
 from scipy import optimize
 
+opth=True
 tree = brownian.read_tree("test_data/hap.tre")
 traits = brownian.read_traits("./test_data/multi_traits_primates.csv")#multi_traits_t6_t7_t9_t10.csv")
 
@@ -15,7 +16,8 @@ traits = brownian.read_traits("./test_data/multi_traits_primates.csv")#multi_tra
 #    print opt#[0]
 #    print [j.label for j in i.leaves()]
 
-a = brownian.find_shifts(tree, traits)
+brownian.tip_dates(tree,"./test_data/hap.tip_dates.csv",34)
+a = brownian.find_shifts(tree, traits,opt_nodes=opth)
 print a
 #print [[i.label,i.rate_class] for i in a[1].iternodes()] 
 

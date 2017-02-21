@@ -1,0 +1,27 @@
+  1 import calc_bm_likelihood as brownian
+  2 from scipy import optimize
+  3
+  4 tree = brownian.read_tree("test_data/0.mcc.tre")
+  5 traits = brownian.read_traits("./test_data/traits.0.nex") #traits.0.nex")
+  6 newtree = brownian.assign_sigsq(tree)
+  7
+  8 print brownian.bm_prune(newtree,traits)
+  9 #print brownian.bm_prune(newtree,traits)
+ 10 brownian.assign_node_nums(tree)
+ 11 nnodes=0
+ 12
+ 13 for i in tree.iternodes(order=1):
+ 14     if i.istip or i.parent == None:
+ 15         continue
+ 16     else:
+ 17         nnodes+=1
+ 18
+ 19 nstart = [1.]
+ 20 nstart = nstart + [1.]*[nnodes-len(nstart)]
+ 21 a = [0.1]
+ 22 optimize.fmin_powell(brownian.calc_like_single,a,args=(tree,traits))
+ 23
+ 24
+~
+~
+"test.py" 24L, 606C written                                                          13,31         All
