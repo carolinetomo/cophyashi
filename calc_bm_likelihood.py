@@ -114,6 +114,11 @@ def calc_like_nodes(ht,tree,traits,nrates):
     for i in ht:
         if i < 0:
             return LARGE
+    z = 0
+    while z < nrates:
+        if ht[z] > 500:
+            return LARGE
+        z += 1
     if nrates == 1:
         assign_sigsq_p(ht[0],tree)
     elif nrates > 1:
@@ -126,8 +131,6 @@ def calc_like_nodes(ht,tree,traits,nrates):
     except:
         return LARGE
     #print (val,ht)
-    #sys.exit(0)
-    #print val,ht 
     return val
 
 def calc_like_multi(params,tree,traits):
@@ -156,17 +159,19 @@ def find_shifts(tree,traits,stop=2,aic_cutoff=2,opt_nodes=True):
     if opt_nodes == False:
         single = optimize.fmin_powell(calc_like_single,start,args=(tree,traits),full_output=True,disp=False)
     elif opt_nodes == True:
+        assign_node_nums(tree)
         init_heights(tree)
         nrates = 1
         nstart = [i.height for i in tree.iternodes() if i.istip == False and i.parent!=None]
         start = start + nstart
         single = optimize.fmin_powell(calc_like_nodes,start,args=(tree,traits,nrates),full_output=True,disp=False)
-    print single;sys.exit(0)
+        assign_node_heights(single[0][1:],tree)
     curlike = 0.0
-    curbest = 100000000
+    curbest = LARGE
     best_node = None
     best_tree = None
-    print [i.height for i in tree.iternodes() if i.istip == False or i == tree]
+    best_tree_obj=None
+    #print [i.height for i in tree.iternodes() if i.istip == False or i == tree]
     for i in tree.iternodes(order=1):
         if best_node == None:
             best_node = i
@@ -178,15 +183,21 @@ def find_shifts(tree,traits,stop=2,aic_cutoff=2,opt_nodes=True):
             opt = optimize.fmin_powell(calc_like_multi,start,args=(tree,traits),full_output =True,disp=False)
         elif opt_nodes == True:
             nrates = 2
-            nstart = [i.height for i in tree.iternodes() if i.istip == False and i.parent!=None]
+            nstart = [j.height for j in tree.iternodes() if j.istip == False and j.parent!=None]
             start = start + nstart
             opt = optimize.fmin_powell(calc_like_nodes,start,args=(tree,traits,nrates),full_output =True,disp=False)
+            assign_node_heights(opt[0][nrates:],tree)
         curlike = opt[1]
+        opt2= None
         if curlike < curbest:
             curbest = curlike
             best_node = i
-            best_tree2 = tree.get_newick_repr(showbl=False,show_rate=True)
+            best_tree2 = tree.get_newick_repr(showbl=True,show_rate=False)
+            #print best_tree2
+            best_tree_obj = tree
             opt2 = opt[0]
+        else:
+            tree = best_tree_obj
     single_aic = 2. * (1+single[1])
     two_aic = 2.*(3+curbest)
     likes=[single[1],curbest]
@@ -218,10 +229,11 @@ def find_shifts(tree,traits,stop=2,aic_cutoff=2,opt_nodes=True):
     three_aic = 2.*(5+curbest)
     aic.append(three_aic)
     """
-    sm =1000000000000.
+    sm = 1000000000000.
     for i in aic:
         if i < sm and abs(sm-i) >= aic_cutoff:
             sm = i
+    print best_tree2
     return [aic,opt2]#,opt3]
 
 def match_traits_tips(tree,traits,number):
