@@ -1,7 +1,0 @@
-pxrr
-pxrr -t
-pxrr -h
-pxrr -t test_data/hap.tre -u
-pxrr -t test_data/hap.tre -u -t test_data/hap.tre.rr
-pxrr -t test_data/hap.tre -u
-pxrr -t test_data/hap.ed.tre -u

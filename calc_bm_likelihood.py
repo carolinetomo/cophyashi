@@ -31,6 +31,7 @@ def bm_prune(tree,traits):
         #return(sum(node_likes))
     return sum(trait_likes)
 
+#TODO: integrate w/ init_heights correctly
 def tip_dates(tree,dates,root_height):
     d = {}
     for i in open(dates,"r"):
@@ -39,6 +40,7 @@ def tip_dates(tree,dates,root_height):
     for i in tree.iternodes():
         if i.istip == True:
             i.height = d[i.label]
+            i.length = i.parent.height-i.height
         elif i.parent==None:
             i.height = root_height
     return tree
@@ -154,87 +156,121 @@ def calc_like_single(params,tree,traits):
 def bm_like(sigsq,cur_var,contrast):
     return ((-0.5)* ((math.log(2*math.pi*sigsq))+(math.log(cur_var))+(math.pow(contrast,2)/(sigsq*cur_var))))
 
-def find_shifts(tree,traits,stop=2,aic_cutoff=2,opt_nodes=True):
-    start = [random.uniform(0.0,2.0)]
+def find_shifts(tree,traits,stop=2,aic_cutoff=4,opt_nodes=True,search="MEDUSA"):
+    start = [random.uniform(0.0,1.0)]
+    aic = {}
+    nrates = 1
     if opt_nodes == False:
-        single = optimize.fmin_powell(calc_like_single,start,args=(tree,traits),full_output=True,disp=False)
+        single = optimize.fmin_bfgs(calc_like_single,start,args=(tree,traits),full_output=True,disp=False)
     elif opt_nodes == True:
         assign_node_nums(tree)
         init_heights(tree)
-        nrates = 1
         nstart = [i.height for i in tree.iternodes() if i.istip == False and i.parent!=None]
         start = start + nstart
-        single = optimize.fmin_powell(calc_like_nodes,start,args=(tree,traits,nrates),full_output=True,disp=False)
+        single = optimize.fmin_bfgs(calc_like_nodes,start,args=(tree,traits,nrates),full_output=True,disp=False)
+        aic1 = 2. * (1+single[1])
+        aic[aic1]= tree.get_newick_repr(True)
         assign_node_heights(single[0][1:],tree)
     curlike = 0.0
     curbest = LARGE
     best_node = None
     best_tree = None
     best_tree_obj=None
-    #print [i.height for i in tree.iternodes() if i.istip == False or i == tree]
     for i in tree.iternodes(order=1):
         if best_node == None:
             best_node = i
         shifts = {}
         shifts[i] = 1
         paint_branches(tree,shifts)
-        start = [random.uniform(0.0,2.0),random.uniform(0.0,2.0)]
+        rand = random.uniform(0.005,2.0)
+        rand2 = random.uniform(0.005,2.0)
+        start = [rand,rand2]
+        #start = [random.uniform(0.0,2.0),random.uniform(0.0,2.0)]
+        nrates = 2
         if opt_nodes == False:
-            opt = optimize.fmin_powell(calc_like_multi,start,args=(tree,traits),full_output =True,disp=False)
+            opt = optimize.fmin_bfgs(calc_like_multi,start,args=(tree,traits),full_output =True,disp=False)
         elif opt_nodes == True:
-            nrates = 2
             nstart = [j.height for j in tree.iternodes() if j.istip == False and j.parent!=None]
             start = start + nstart
-            opt = optimize.fmin_powell(calc_like_nodes,start,args=(tree,traits,nrates),full_output =True,disp=False)
+            opt = optimize.fmin_bfgs(calc_like_nodes,start,args=(tree,traits,nrates),full_output =True,disp=False)
             assign_node_heights(opt[0][nrates:],tree)
         curlike = opt[1]
         opt2= None
         if curlike < curbest:
             curbest = curlike
-            best_node = i
+            best_node2 = i
             best_tree2 = tree.get_newick_repr(showbl=True,show_rate=False)
             #print best_tree2
             best_tree_obj = tree
             opt2 = opt[0]
         else:
             tree = best_tree_obj
-    single_aic = 2. * (1+single[1])
-    two_aic = 2.*(3+curbest)
+    aic2 = 2.*(3+curbest)
+    aic[aic2] = best_tree2
     likes=[single[1],curbest]
-    aic = [single_aic,two_aic]
-    """
-    for i in tree.iternodes(order=1):
-        for j in tree.iternodes(order=1):
-            if i == j:
+    if nrates == stop:
+        print aic.keys()
+        return aic
+    curbest= LARGE
+    nrates = 3
+    if search == "FULL":
+        for i in tree.iternodes(order=1):
+            for j in tree.iternodes(order=1):
+                if i == j:
+                    continue
+                shifts={}
+                shifts[i]=1
+                shifts[j]=2
+                paint_branches(tree,shifts)
+                start = [random.uniform(0.0,2.0),random.uniform(0.0,2.0),random.uniform(0.0,2.0)]
+                if opt_nodes == False:
+                    opt = optimize.fmin_bfgs(calc_like_multi,start,args=(tree,traits),full_output= True,disp=False)
+                elif opt_nodes == True:
+                    nrates = 3
+                    nstart = [i.height for i in tree.iternodes() if i.istip == False and i.parent!=None]
+                    start = start+nstart
+                    opt = optimize.fmin_bfgs(calc_like_nodes,start,args=(tree,traits,nrates),full_output=True,disp=False)
+                curlike = opt[1]
+                if curlike < curbest:
+                    curbest = curlike
+                    best_nodes = shifts
+                    best_tree3 = tree.get_newick_repr(showbl=False,show_rate=True)
+                    best_tree_obj3 = tree
+                    opt3 = opt[0]
+                else:
+                    tree = best_tree_obj3
+    elif search == "MEDUSA": #this takes the best single shift and tries to add another 
+        for i in tree.iternodes(order = 1):
+            if i == best_node2:
                 continue
-            shifts={}
-            shifts[i]=1
-            shifts[j]=2
+            shifts = {}
+            shifts[best_node2]=1
+            shifts[i] = 2
             paint_branches(tree,shifts)
             start = [random.uniform(0.0,2.0),random.uniform(0.0,2.0),random.uniform(0.0,2.0)]
             if opt_nodes == False:
-                opt = optimize.fmin_powell(calc_like_multi,start,args=(tree,traits),full_output= True,disp=False)
+                opt = optimize.fmin_bfgs(calc_like_multi,start,args=(tree,traits),full_output= True,disp=False)
             elif opt_nodes == True:
                 nrates = 3
                 nstart = [i.height for i in tree.iternodes() if i.istip == False and i.parent!=None]
                 start = start+nstart
-                opt = optimize.fmin_powell(calc_like_nodes,start,args=(tree,traits,nrates),full_output=True,disp=False)
+                opt = optimize.fmin_bfgs(calc_like_nodes,start,args=(tree,traits,nrates),full_output=True,disp=False)
             curlike = opt[1]
             if curlike < curbest:
                 curbest = curlike
-                best_nodes = shifts
+                best_node3 = i
                 best_tree3 = tree.get_newick_repr(showbl=False,show_rate=True)
-                opt3 = opt[0]
+                best_tree_obj3 = tree
+                opt3=opt[0]
     likes.append(curbest)
-    three_aic = 2.*(5+curbest)
-    aic.append(three_aic)
-    """
+    aic3 = 2.*(5+curbest)
+    aic[aic3] = best_tree3
     sm = 1000000000000.
     for i in aic:
         if i < sm and abs(sm-i) >= aic_cutoff:
             sm = i
-    print best_tree2
-    return [aic,opt2]#,opt3]
+    print aic.keys()
+    return aic[sm]
 
 def match_traits_tips(tree,traits,number):
     for i in tree.leaves():

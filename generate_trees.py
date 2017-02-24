@@ -18,7 +18,7 @@ t = p4.var.trees[0]
 di = []
 alt = True
 alt2 = False
-for i in range(100):
+for i in range(1):
     d = t.dupe()
     if alt == True:
         d.nni()

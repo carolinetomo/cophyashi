@@ -3,8 +3,10 @@ import phylo3
 from scipy import optimize
 
 opth=True
-tree = brownian.read_tree("test_data/hap.tre")
-traits = brownian.read_traits("./test_data/multi_traits_primates.csv")#multi_traits_t6_t7_t9_t10.csv")
+z = "MEDUSA"
+s = 3
+tree = brownian.read_tree("test_data/hap.1nni.tre")
+traits = brownian.read_traits("./test_data/hap.30.single.csv")#multi_traits_t6_t7_t9_t10.csv")
 
 #for i in tree.iternodes(order=1):
 #    shifts ={}
@@ -17,7 +19,7 @@ traits = brownian.read_traits("./test_data/multi_traits_primates.csv")#multi_tra
 #    print [j.label for j in i.leaves()]
 
 brownian.tip_dates(tree,"./test_data/hap.tip_dates.csv",34)
-a = brownian.find_shifts(tree, traits,opt_nodes=opth)
+a = brownian.find_shifts(tree, traits,opt_nodes=opth,search=z,stop=s)
 print a
 #print [[i.label,i.rate_class] for i in a[1].iternodes()] 
 
