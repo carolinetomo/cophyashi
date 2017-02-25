@@ -31,7 +31,6 @@ def bm_prune(tree,traits):
         #return(sum(node_likes))
     return sum(trait_likes)
 
-#TODO: integrate w/ init_heights correctly
 def tip_dates(tree,dates,root_height):
     d = {}
     for i in open(dates,"r"):
@@ -40,7 +39,6 @@ def tip_dates(tree,dates,root_height):
     for i in tree.iternodes():
         if i.istip == True:
             i.height = d[i.label]
-            i.length = i.parent.height-i.height
         elif i.parent==None:
             i.height = root_height
     return tree
@@ -91,6 +89,8 @@ def init_heights(tree):
                 temp += n.length
                 n = n.parent
             i.height = temp
+    for i in tree.leaves():
+        i.length = i.parent.height-i.height
 
 def assign_node_heights(h,tree):
     for i in tree.iternodes(order=0):
