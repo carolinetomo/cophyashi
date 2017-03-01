@@ -10,22 +10,25 @@ def bm_prune(tree,traits):
     trait_likes = []
     for i in range(len(traits.values()[0])):
         node_likes = []
-        newtree = match_traits_tips(tree,traits,i)
-        for j in newtree.iternodes(order=1):
+        match_traits_tips(tree,traits,i)
+        for j in tree.iternodes():
+            j.old_length = j.length
+        for j in tree.iternodes(order=1):
             if len(j.children) > 0: # do internal nodes only  
                 child_charst = [k.charst for k in j.children]
                 brlens = [k.length for k in j.children]
                 contrast = child_charst[0]-child_charst[1]
                 cur_var = brlens[0]+brlens[1]
+                #print j.sigsq
+                cur_like =((-0.5)* ((math.log(2*math.pi*j.sigsq))+(math.log(cur_var))+(math.pow(contrast,2)/(j.sigsq*cur_var))))
+                node_likes.append(cur_like)
                 temp_charst = (((1/brlens[0])*child_charst[0])+((1/brlens[1])*child_charst[1]))/((1/brlens[0])+(1/brlens[1]))
                 #temp_charst = (((brlens[1]/(sum(brlens)))*child_charst[0]))+(((brlens[0]/(sum(brlens))))*child_charst[1])
                 temp_brlen = j.length+((brlens[0]*brlens[1])/(brlens[0]+brlens[1]))
-                cur_like =((-0.5)* ((math.log(2*math.pi*j.sigsq))+(math.log(cur_var))+(math.pow(contrast,2)/(j.sigsq*cur_var))))
-                node_likes.append(cur_like)
                 [k.remove_child for k in j.children]
                 j.charst = temp_charst
                 j.length = temp_brlen
-        for j in newtree.iternodes():
+        for j in tree.iternodes():
             j.length = j.old_length
         trait_likes.append(sum(node_likes))
         #return(sum(node_likes))
@@ -41,7 +44,6 @@ def tip_dates(tree,dates,root_height):
             i.height = d[i.label]
         elif i.parent==None:
             i.height = root_height
-    return tree
 
 def paint_branches(tree,shift_nodes): #shift_nodes should be a dictionary with nodes as keys and rate regime as value
     nodes = {}
@@ -77,19 +79,22 @@ def assign_node_nums(tree):
     return tree
 
 
-def init_heights(tree):
+def init_heights(tree,sigsq):
     for i in tree.iternodes(order=1):
         if i.istip or i.parent == None:
+            if len(sigsq)==1:
+                i.sigsq = sigsq[0]
+            elif len(sigsq) > 1:
+                i.sigsq = sigsq[i.rate_class]
             continue
-        else:
-            temp = 0.0
-            n=i.descendants("POSTORDER")[0]
-            temp += n.height
-            while n!=i:
-                temp += n.length
-                n = n.parent
-            i.height = temp
-    for i in tree.leaves():
+        i.height = max([j.height for j in i.children])+0.01
+        if len(sigsq)==1:
+            i.sigsq = sigsq[0]
+        elif len(sigsq) > 1:
+            i.sigsq = sigsq[i.rate_class]
+    for i in tree.iternodes():
+        if i == tree:
+            continue
         i.length = i.parent.height-i.height
 
 def assign_node_heights(h,tree):
@@ -104,13 +109,13 @@ def assign_node_heights(h,tree):
             i.height = h[i.number]
             i.length = i.parent.height-i.height
             if i.length < 0:
+                #print i.get_newick_repr(False),i.number,h[i.number],i.parent.height,i.length
                 return True
     return False
 
 def assign_sigsq_multi(p,tree): #params should be vector ordered like the rate classes
     for i in tree.iternodes():
         i.sigsq = p[i.rate_class]
-    return tree
 
 def calc_like_nodes(ht,tree,traits,nrates):
     for i in ht:
@@ -144,6 +149,12 @@ def calc_like_multi(params,tree,traits):
     #print val,params
     return val
 
+def pop_dict(tree):
+    d = {}
+    for i in tree.iternodes():
+        d[i] = (i.height,i.length,i.sigsq)
+    return d
+
 def calc_like_single(params,tree,traits):
     assign_sigsq_p(params[0],tree)
     try:
@@ -157,17 +168,19 @@ def bm_like(sigsq,cur_var,contrast):
     return ((-0.5)* ((math.log(2*math.pi*sigsq))+(math.log(cur_var))+(math.pow(contrast,2)/(sigsq*cur_var))))
 
 def find_shifts(tree,traits,stop=2,aic_cutoff=4,opt_nodes=True,search="MEDUSA"):
-    start = [random.uniform(0.0,1.0)]
+    start = [random.uniform(0.0,2.0)]
     aic = {}
     nrates = 1
     if opt_nodes == False:
         single = optimize.fmin_bfgs(calc_like_single,start,args=(tree,traits),full_output=True,disp=False)
     elif opt_nodes == True:
         assign_node_nums(tree)
-        init_heights(tree)
+        init_heights(tree,start)
         nstart = [i.height for i in tree.iternodes() if i.istip == False and i.parent!=None]
         start = start + nstart
-        single = optimize.fmin_bfgs(calc_like_nodes,start,args=(tree,traits,nrates),full_output=True,disp=False)
+        single = optimize.fmin_bfgs(calc_like_nodes,start,args=(tree,traits,nrates),full_output=True,disp=True)
+        #bounds = [(0.0,100000.0)]*len(start)
+        #single = optimize.fmin_l_bfgs_b(calc_like_nodes,start,approx_grad = True,bounds =bounds,args=(tree,traits,nrates))
         aic1 = 2. * (1+single[1])
         aic[aic1]= tree.get_newick_repr(True)
         assign_node_heights(single[0][1:],tree)
@@ -176,6 +189,7 @@ def find_shifts(tree,traits,stop=2,aic_cutoff=4,opt_nodes=True,search="MEDUSA"):
     best_node = None
     best_tree = None
     best_tree_obj=None
+    best = {}
     for i in tree.iternodes(order=1):
         if best_node == None:
             best_node = i
@@ -185,7 +199,6 @@ def find_shifts(tree,traits,stop=2,aic_cutoff=4,opt_nodes=True,search="MEDUSA"):
         rand = random.uniform(0.005,2.0)
         rand2 = random.uniform(0.005,2.0)
         start = [rand,rand2]
-        #start = [random.uniform(0.0,2.0),random.uniform(0.0,2.0)]
         nrates = 2
         if opt_nodes == False:
             opt = optimize.fmin_bfgs(calc_like_multi,start,args=(tree,traits),full_output =True,disp=False)
@@ -193,6 +206,8 @@ def find_shifts(tree,traits,stop=2,aic_cutoff=4,opt_nodes=True,search="MEDUSA"):
             nstart = [j.height for j in tree.iternodes() if j.istip == False and j.parent!=None]
             start = start + nstart
             opt = optimize.fmin_bfgs(calc_like_nodes,start,args=(tree,traits,nrates),full_output =True,disp=False)
+            #bounds = [(0.0,100000.0)]*len(start)
+            #opt = optimize.fmin_l_bfgs_b(calc_like_nodes,start,approx_grad = True,bounds = bounds,args=(tree,traits,nrates))
             assign_node_heights(opt[0][nrates:],tree)
         curlike = opt[1]
         opt2= None
@@ -200,11 +215,15 @@ def find_shifts(tree,traits,stop=2,aic_cutoff=4,opt_nodes=True,search="MEDUSA"):
             curbest = curlike
             best_node2 = i
             best_tree2 = tree.get_newick_repr(showbl=True,show_rate=False)
-            #print best_tree2
-            best_tree_obj = tree
+            best_nh = pop_dict(tree)
+            best = pop_dict(tree)
             opt2 = opt[0]
         else:
-            tree = best_tree_obj
+            for j in tree.iternodes():
+                tup = best[j]
+                j.height = tup[0]
+                j.length = tup[1]
+                j.sigsq = tup[2]
     aic2 = 2.*(3+curbest)
     aic[aic2] = best_tree2
     likes=[single[1],curbest]
@@ -279,7 +298,10 @@ def match_traits_tips(tree,traits,number):
 
 def read_tree(treefl):
     nwk = open(treefl,"r").readlines()[0].strip()
-    return tree_reader.read_tree_string(nwk)
+    tree = tree_reader.read_tree_string(nwk)
+    for i in tree.iternodes():
+        i.old_length = i.length
+    return tree
 
 def read_traits(traitfl): #should be tab separated
     traits = {}

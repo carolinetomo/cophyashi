@@ -28,8 +28,8 @@ def read_tree_string(instr):
 		elif nextchar == ")":
 			curnode = curnode.parent
 			index += 1
-			nextchar = instr[index]
-			name = ""
+                        nextchar = instr[index]
+                        name = ""
 			while True:
 				if nextchar == ',' or nextchar == ')' or nextchar == ':' \
 					or nextchar == ';' or nextchar == '[':

@@ -5,8 +5,8 @@ from scipy import optimize
 opth=True
 z = "MEDUSA"
 s = 2
-tree = brownian.read_tree("./test_data/hap.tre")
-traits = brownian.read_traits("./test_data/hap.1.ape.csv")#multi_traits_t6_t7_t9_t10.csv")
+tree = brownian.read_tree("./test_data/paleo_sim.tre")
+traits = brownian.read_traits("./test_data/paleo_BM.csv")#multi_traits_t6_t7_t9_t10.csv")
 
 #for i in tree.iternodes(order=1):
 #    shifts ={}
@@ -18,8 +18,7 @@ traits = brownian.read_traits("./test_data/hap.1.ape.csv")#multi_traits_t6_t7_t9
 #    print opt#[0]
 #    print [j.label for j in i.leaves()]
 
-brownian.tip_dates(tree,"./test_data/hap.tip_dates.csv",34)
-print tree.get_newick_repr(True)
+brownian.tip_dates(tree,"./test_data/paleo_heights.csv",16.43)
 a = brownian.find_shifts(tree, traits,opt_nodes=opth,search=z,stop=s)
 print a
 #print [[i.label,i.rate_class] for i in a[1].iternodes()] 

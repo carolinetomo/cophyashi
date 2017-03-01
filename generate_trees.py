@@ -18,7 +18,7 @@ t = p4.var.trees[0]
 di = []
 alt = True
 alt2 = False
-for i in range(1):
+for i in range(5):
     d = t.dupe()
     if alt == True:
         d.nni()
@@ -34,4 +34,8 @@ for i in range(1):
     di.append(d.writeNewick(toString=True,spaceAfterComma=False))
 x = f5(di)
 
-print x
+for i in range(0,len(x)):
+    outfl = open(sys.argv[1]+str(i),"w")
+    outfl.write(x[i].strip())
+    outfl.close()
+
