@@ -1,48 +1,27 @@
 import calc_bm_likelihood as brownian
 import phylo3
 from scipy import optimize
+import sys
 
 opth=True
 z = "MEDUSA"
-s = 2
-tree = brownian.read_tree("./test_data/paleo_sim.tre")
-traits = brownian.read_traits("./test_data/paleo_BM.csv")#multi_traits_t6_t7_t9_t10.csv")
+s = 1
+tree = brownian.read_tree("./test_data/2tips.tre")
+traits = brownian.read_traits("./test_data/2tips_traits.csv")
 
-#for i in tree.iternodes(order=1):
-#    shifts ={}
-#    shifts[i] = 1
-#    brownian.paint_branches(tree,shifts)
-#    traits = brownian.read_traits("./test_data/multi_traits_t6_t7_t9_t10.csv")
-#    a = [0.1,0.1]
-#    opt = optimize.fmin_powell(brownian.calc_like_multi,a,args=(tree,traits),full_output = True)
-#    print opt#[0]
-#    print [j.label for j in i.leaves()]
+brownian.tip_dates(tree,"./test_data/2tips_heights.csv",float(sys.argv[1]))
 
-brownian.tip_dates(tree,"./test_data/paleo_heights.csv",16.43)
-a = brownian.find_shifts(tree, traits,opt_nodes=opth,search=z,stop=s)
-print a
-#print [[i.label,i.rate_class] for i in a[1].iternodes()] 
-
-#    print [j.label for j in i.leaves()]
-
-#mrca = phylo3.getMRCA(["t6","t7"],tree)
-#shifts = {}
-#shifts[mrca] = 1
-#mrca = phylo3.getMRCA(["t5","t4"],tree)
-#shifts[mrca] = 2
-
-#brownian.paint_branches(tree,shifts)
-
-#traits = brownian.read_traits("multi_traits.csv")
-#newtree = brownian.assign_sigsq(tree)
-
-#print brownian.bm_prune(newtree,traits)
-#print brownian.bm_prune(newtree,traits)
-#a = [0.1,0.1]
-#optimize.fmin_powell(brownian.calc_like_multi,a,args=(tree,traits))
-#a = [0.1]
-#optimize.fmin_powell(brownian.calc_like_single,a,args=(tree,traits))
-
+brownian.init_heights(tree,[0.9410645])
+"""
+rng = 100.
+for i in range(1,int(rng)+1):
+    brownian.init_heights(tree,[i/10.])
+    print i/10.,brownian.bm_prune(tree,traits)
+print tree.get_newick_repr(showbl=True)
+"""
+print brownian.bm_prune(tree,traits)
+#a = brownian.find_shifts(tree, traits,opt_nodes=opth,search=z,stop=s)
+#print a
 
 
 

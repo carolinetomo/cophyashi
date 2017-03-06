@@ -18,7 +18,6 @@ def bm_prune(tree,traits):
             if j.istip == False:# and j.parent != None: # do internal nodes only  
                 child_charst = [k.charst for k in j.children]
                 brlens = [k.length for k in j.children]
-                print brlens
                 contrast = child_charst[0]-child_charst[1]
                 cur_var = brlens[0]+brlens[1]
                 #print j.sigsq
@@ -42,6 +41,28 @@ def bm_prune(tree,traits):
     #print tree.get_newick_repr(True)
     #print sum(trait_likes)
     return sum(trait_likes)
+
+def sigsqML(tree): #tree must already have characters mapped to tips using match_traits_tips()
+    n = tree.nnodes("tips")
+    vals = [None]*(n-1)
+    p = 0
+    for i in tree.iternodes(order=1):
+        if i.istip == False and i != tree:
+            x = [j.charst for j in i.children]
+            t = [j.length for j in i.children]
+            ui = abs(x[0]-x[1])
+            Vi = sum(t)
+            vals[p] = (ui,Vi)
+            add = (t[0]*t[1])/(t[0]+t[1])
+            i.length = i.length + add
+            p += 1
+        if i == tree:
+            t = [j.length for j in i.children]
+            Vi = sum(t)
+            V0 = (t[0]*t[1])/(t[0]+t[1])
+        div = [math.pow(i[0],2)/i[1] for i in V]
+        sig2 = (1/n)
+
 
 def tip_dates(tree,dates,root_height):
     d = {}
