@@ -1,6 +1,7 @@
 from scipy import optimize
 import math
 import tree_reader
+from tree_utils import *
 from numpy import random
 import sys
 
@@ -61,17 +62,6 @@ def sigsqML(tree): #tree must already have characters mapped to tips using match
     return sig2
 
 
-def tip_dates(tree,dates,root_height):
-    d = {}
-    for i in open(dates,"r"):
-        spls = i.strip().split()
-        d[spls[0]] = float(spls[1])
-    for i in tree.iternodes():
-        if i.istip == True:
-            i.height = d[i.label]
-        elif i.parent==None:
-            i.height = root_height
-
 def paint_branches(tree,shift_nodes): #shift_nodes should be a dictionary with nodes as keys and rate regime as value
     nodes = {}
     for i in shift_nodes.keys():
@@ -95,51 +85,6 @@ def assign_sigsq_p(p,tree):
         i.sigsq = p
     return tree
 
-def assign_node_nums(tree):
-    num = 0
-    for i in tree.iternodes(order=0):
-        if i.istip or i == tree:
-            continue
-        else:
-            i.number = num
-            num += 1
-    return tree
-
-
-def init_heights(tree,sigsq):
-    for i in tree.iternodes(order=1):
-        if i.istip or i.parent == None:
-            if len(sigsq)==1:
-                i.sigsq = sigsq[0]
-            elif len(sigsq) > 1:
-                i.sigsq = sigsq[i.rate_class]
-            continue
-        i.height = max([j.height for j in i.children])+0.1
-        if len(sigsq)==1:
-            i.sigsq = sigsq[0]
-        elif len(sigsq) > 1:
-            i.sigsq = sigsq[i.rate_class]
-    for i in tree.iternodes():
-        if i == tree:
-            continue
-        i.length = i.parent.height-i.height
-    #print tree.get_newick_repr(True)
-
-def assign_node_heights(h,tree):
-    for i in tree.iternodes(order=0):
-        if i.istip:
-            i.length = i.parent.height-i.height
-            if i.length < 0:
-                return True
-        elif i.parent == None:
-            i.length = 0.01
-        else:
-            i.height = h[i.number]
-            i.length = i.parent.height-i.height
-            if i.length < 0:
-                #print i.get_newick_repr(False),i.number,h[i.number],i.parent.height,i.length
-                return True
-    return False
 
 def assign_sigsq_multi(p,tree): #params should be vector ordered like the rate classes
     for i in tree.iternodes():
@@ -165,7 +110,7 @@ def calc_like_nodes(ht,tree,traits,nrates):
         val = -bm_prune(tree,traits)
     except:
         return LARGE
-    print ht[0] 
+    #print ht[0] 
     #print (val,ht)
     return val
 
@@ -212,7 +157,7 @@ def find_shifts(tree,traits,stop=2,aic_cutoff=4,opt_nodes=True,search="MEDUSA"):
         single = optimize.fmin_l_bfgs_b(calc_like_nodes,start,approx_grad = True,bounds =bounds,args=(tree,traits,nrates))
         aic1 = 2. * (1+single[1])
         aic[aic1]= tree.get_newick_repr(True)
-        #assign_node_heights(single[0][1:],tree)
+        assign_node_heights(single[0][1:],tree)
     if nrates == stop:
         return aic
     curlike = 0.0
@@ -289,7 +234,7 @@ def find_shifts(tree,traits,stop=2,aic_cutoff=4,opt_nodes=True,search="MEDUSA"):
                     opt3 = opt[0]
                 else:
                     tree = best_tree_obj3
-    elif search == "MEDUSA": #this takes the best single shift and tries to add another 
+    elif search == "MEDUSA": #take the best single shift and tries to add another 
         for i in tree.iternodes(order = 1):
             if i == best_node2:
                 continue
@@ -312,6 +257,12 @@ def find_shifts(tree,traits,stop=2,aic_cutoff=4,opt_nodes=True,search="MEDUSA"):
                 best_tree3 = tree.get_newick_repr(showbl=False,show_rate=True)
                 best_tree_obj3 = tree
                 opt3=opt[0]
+                best = pop_dict(tree)
+            else:
+                tup = best[j]
+                j.height = tup[0]
+                j.length = tup[1]
+                j.sigsq = tup[2]
     likes.append(curbest)
     aic3 = 2.*(5+curbest)
     aic[aic3] = best_tree3
@@ -322,30 +273,4 @@ def find_shifts(tree,traits,stop=2,aic_cutoff=4,opt_nodes=True,search="MEDUSA"):
     print aic.keys()
     return aic[sm]
 
-def match_traits_tips(tree,traits,number):
-    for i in tree.leaves():
-        i.charst = traits[i.label][number]
-    return tree
 
-def read_tree(treefl):
-    nwk = open(treefl,"r").readlines()[0].strip()
-    tree = tree_reader.read_tree_string(nwk)
-    for i in tree.iternodes():
-        i.old_length = i.length
-    return tree
-
-def read_traits(traitfl): #should be tab separated
-    traits = {}
-    for i in open(traitfl,"r"):
-        if "\t" not in i:
-            continue
-        spls = i.strip().split("\t")
-        nm = spls[0]
-        traitls = [float(j) for j in spls[1:]]
-        traits[nm]= traitls
-    return traits
-
-def assign_sigsq(tree):
-    for i in tree.iternodes():
-        i.sigsq = 0.5
-    return tree

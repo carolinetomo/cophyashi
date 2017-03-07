@@ -4,7 +4,7 @@ from scipy import optimize
 
 opth=True
 z = "MEDUSA"
-s = 1
+s = 3
 tree = brownian.read_tree("./test_data/0.mcc.tre")
 traits = brownian.read_traits("./test_data/traits.0.nex")#multi_traits_t6_t7_t9_t10.csv")
 

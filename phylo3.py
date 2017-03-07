@@ -20,6 +20,7 @@ class Node:
         self.rate_class = 0
         self.height = None#0.
         self.number = 0
+        self.occurrences = None
 
     def get_newick_repr(self,showbl=False,show_rate=False):
         ret = ""
