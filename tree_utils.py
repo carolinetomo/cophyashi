@@ -10,9 +10,16 @@ def init_heights(tree,sigsq=None):
                     i.sigsq = sigsq[i.rate_class]
             continue
         o = []
+        start = False
         for j in i.children:
-            if j.occurrences != None and j.occurrences[0]!="NA" and len(j.occurrences) != 1:
-                o.append(j.occurrences)
+            if j.occurrences == []:
+                continue
+            if j.occurrences != None and j.occurrences[0]!="NA":
+                if start == False:
+                    o = j.occurrences
+                    start = True
+                else:
+                    o = o+j.occurrences
         if o != []:
             i.height = max(o) + 0.1
         else:
@@ -76,6 +83,7 @@ def read_strat(stratfl):
         spls = i.strip().split("\t")
         t = spls[0]
         s = [float(i) for i in spls[1:] if i != "NA"]
+        #print s
         ran[t]=s
     return ran
 
