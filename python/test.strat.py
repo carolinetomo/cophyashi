@@ -11,3 +11,4 @@ print stratoML.hr97_loglike(tree,lam=0.5)
 
 stratoML.optim_lambda_heights(tree,ranges)
 
+print tree.get_newick_repr(True)

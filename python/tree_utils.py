@@ -1,6 +1,6 @@
 import tree_reader
 
-def init_heights(tree,sigsq=None): ##TODO: FIX BUG IN THIS
+def init_heights(tree,sigsq=None): 
     for i in tree.iternodes(order=1):
         if i.istip or i.parent == None:
             if sigsq != None:
@@ -12,18 +12,16 @@ def init_heights(tree,sigsq=None): ##TODO: FIX BUG IN THIS
         o = []
         start = False
         for j in i.children:
-            if j.occurrences == []:
-                continue
-            if j.occurrences != None and j.occurrences[0]!="NA":
+            if j.occurrences != None and "NA" not in j.occurrences:
                 if start == False:
                     o = j.occurrences
+                    print o
                     start = True
                 else:
                     o = o+j.occurrences
-        if len(o) != 0:
-            i.height = max(o) + 0.1
-            print i.height,[(j.label,j.height) for j in i.children]
-            #print i.height,[(m.label,m.height) for m in i.children]
+        if len(o) > 0:
+            i.height = max(o+[j.height for j in i.children]) + 0.1
+            #print [j.height for j in i.children],i.height,[(j.label,j.height) for j in i.children]
         else:
             i.height = max([j.height for j in i.children])+0.1
         if sigsq!=None:
@@ -35,6 +33,10 @@ def init_heights(tree,sigsq=None): ##TODO: FIX BUG IN THIS
         if i == tree:
             continue
         i.length = i.parent.height-i.height
+        #if i.length<0:# i.height > i.parent.height:
+            #print tree.get_newick_repr(True)
+            #print i.parent.number,i.number
+            #print i.parent.height,i.height,[(j.label,j.height) for j in i.parent.children]
 
 def assign_node_nums(tree):
     num = 0
