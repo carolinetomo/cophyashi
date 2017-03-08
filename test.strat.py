@@ -7,4 +7,7 @@ tree_utils.match_strat(tree,ranges)
 tree_utils.tip_dates(tree,"./test_data/fossils_strat.tips.txt",27)
 tree_utils.init_heights(tree)
 
-print stratoML.hr97_like(tree,ranges,lam=0.5)
+print stratoML.hr97_loglike(tree,lam=0.5)
+
+stratoML.optim_lambda_heights(tree,ranges)
+

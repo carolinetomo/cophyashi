@@ -1,6 +1,6 @@
 import tree_reader
 
-def init_heights(tree,sigsq=None):
+def init_heights(tree,sigsq=None): ##TODO: FIX BUG IN THIS
     for i in tree.iternodes(order=1):
         if i.istip or i.parent == None:
             if sigsq != None:
@@ -20,8 +20,10 @@ def init_heights(tree,sigsq=None):
                     start = True
                 else:
                     o = o+j.occurrences
-        if o != []:
+        if len(o) != 0:
             i.height = max(o) + 0.1
+            print i.height,[(j.label,j.height) for j in i.children]
+            #print i.height,[(m.label,m.height) for m in i.children]
         else:
             i.height = max([j.height for j in i.children])+0.1
         if sigsq!=None:
@@ -33,7 +35,6 @@ def init_heights(tree,sigsq=None):
         if i == tree:
             continue
         i.length = i.parent.height-i.height
-    #print tree.get_newick_repr(True)
 
 def assign_node_nums(tree):
     num = 0
