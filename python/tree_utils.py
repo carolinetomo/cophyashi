@@ -1,42 +1,31 @@
 import tree_reader
 
-def init_heights(tree,sigsq=None): 
+def init_heights(tree,strat=False): 
     for i in tree.iternodes(order=1):
         if i.istip or i.parent == None:
-            if sigsq != None:
-                if len(sigsq)==1:
-                    i.sigsq = sigsq[0]
-                elif len(sigsq) > 1:
-                    i.sigsq = sigsq[i.rate_class]
             continue
-        o = []
-        start = False
-        for j in i.children:
-            if j.occurrences != None and "NA" not in j.occurrences:
-                if start == False:
-                    o = j.occurrences
-                    print o
-                    start = True
-                else:
-                    o = o+j.occurrences
-        if len(o) > 0:
-            i.height = max(o+[j.height for j in i.children]) + 0.1
-            #print [j.height for j in i.children],i.height,[(j.label,j.height) for j in i.children]
-        else:
-            i.height = max([j.height for j in i.children])+0.1
-        if sigsq!=None:
-            if len(sigsq)==1:
-                i.sigsq = sigsq[0]
-            elif len(sigsq) > 1:
-                i.sigsq = sigsq[i.rate_class]
+        if strat == True:
+            o = []
+            start = False
+            for j in i.children:
+                if j.occurrences != None and "NA" not in j.occurrences:
+                    if start == False:
+                        o = j.occurrences
+                        #print o
+                        start = True
+                    else:
+                        o = o+j.occurrences
+            if len(o) > 0:
+                i.height = max(o+[j.height for j in i.children]) + 0.1
+                #print [j.height for j in i.children],i.height,[(j.label,j.height) for j in i.children]
+            else:
+                i.height = max([j.height for j in i.children])+0.1
+        elif strat == False:
+            i.height = max([j.height for j in i.children])+0.3
     for i in tree.iternodes():
         if i == tree:
             continue
         i.length = i.parent.height-i.height
-        #if i.length<0:# i.height > i.parent.height:
-            #print tree.get_newick_repr(True)
-            #print i.parent.number,i.number
-            #print i.parent.height,i.height,[(j.label,j.height) for j in i.parent.children]
 
 def assign_node_nums(tree):
     num = 0
@@ -113,7 +102,10 @@ def read_traits(traitfl): #should be tab separated
         traits[nm]= traitls
     return traits
 
-def assign_sigsq(tree):
+def assign_sigsq(tree,sigsq=[1]):
     for i in tree.iternodes():
-        i.sigsq = 0.5
+        if len(sigsq) == 1:
+            i.sigsq =sigsq[0]
+        else:
+            i.sigsq = sigsq[i.number] 
     return tree
