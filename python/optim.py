@@ -24,6 +24,7 @@ def bm_height_optim(tree,traits,nrates=False):
         start = [i.height for i in tree.iternodes() if i.istip == False and i.parent!=None]
         opt = optimize.fmin_bfgs(calc_like_nodes,start,args=(tree,traits),full_output=True,disp=True)
         assign_node_heights(single[0][1:],tree)
+        print tree.get_newick_repr(True)
         return opt
 
 def tree_aic(num_p,loglike):

@@ -15,7 +15,7 @@ def bm_prune(tree,traits):
         for j in tree.iternodes():
             j.old_length = j.length
         for j in tree.iternodes(order=1):
-            if j.istip == False:
+            if j.istip == False and j != tree:
                 child_charst = [k.charst for k in j.children]
                 brlens = [k.length for k in j.children]
                 contrast = child_charst[0]-child_charst[1]
@@ -28,6 +28,13 @@ def bm_prune(tree,traits):
                 #[k.remove_child for k in j.children]
                 j.charst = temp_charst
                 j.length = temp_brlen
+            elif j == tree:
+                child_charst = [k.charst for k in j.children]
+                brlens = [k.length for k in j.children]
+                contrast = child_charst[0]-child_charst[1]
+                cur_var = brlens[0]+brlens[1]
+                curlike =((-0.5)* ((math.log(2*math.pi*j.sigsq))+(math.log(cur_var))+(math.pow(contrast,2)/(j.sigsq*cur_var))))
+                node_likes.append(curlike)
         for j in tree.iternodes():
             j.length = j.old_length
         trait_likes.append(sum(node_likes))

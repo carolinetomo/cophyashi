@@ -26,8 +26,9 @@ def bm_height_optim(tree,traits,nrates=False):
         tree_utils.init_heights(tree)
         tree_utils.assign_sigsq(tree)
         start = [i.height for i in tree.iternodes() if i.istip == False and i.parent!=None]
+        print start
         opt = optimize.fmin_bfgs(calc_like_nodes,start,args=(tree,traits),full_output=True,disp=True)
-        print tree.get_newick_repr(True)
+        #print tree.get_newick_repr(True)
         return opt
 
 def calc_like_sigsq_nodes(ht,tree,traits,nrates):
