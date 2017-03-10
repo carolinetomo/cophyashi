@@ -15,12 +15,11 @@ def bm_prune(tree,traits):
         for j in tree.iternodes():
             j.old_length = j.length
         for j in tree.iternodes(order=1):
-            if j.istip == False:# and j.parent != None: # do internal nodes only  
+            if j.istip == False:
                 child_charst = [k.charst for k in j.children]
                 brlens = [k.length for k in j.children]
                 contrast = child_charst[0]-child_charst[1]
                 cur_var = brlens[0]+brlens[1]
-                #x = ((brlens[1]*child_charst[0])+(brlens[0]*child_charst[1]))/(sum(brlens))
                 curlike =((-0.5)* ((math.log(2*math.pi*j.sigsq))+(math.log(cur_var))+(math.pow(contrast,2)/(j.sigsq*cur_var))))
                 node_likes.append(curlike)
                 temp_charst = (((1/brlens[0])*child_charst[0])+((1/brlens[1])*child_charst[1]))/((1/brlens[0])+(1/brlens[1]))
@@ -31,10 +30,7 @@ def bm_prune(tree,traits):
                 j.length = temp_brlen
         for j in tree.iternodes():
             j.length = j.old_length
-        #first = (tree.nnodes("tips")*math.log(2*math.pi))
-        #Ly = (first+sum(node_likes))*(-0.5)
         trait_likes.append(sum(node_likes))
-    #print tree.get_newick_repr(True)
     #print -sum(trait_likes)
     return sum(trait_likes)
 
