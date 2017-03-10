@@ -3,6 +3,8 @@ from scipy import optimize
 import tree_reader
 import tree_utils
 import calc_bm_likelihood
+import random
+import stratoML
 
 LARGE = 100000000000
 
@@ -14,22 +16,20 @@ def bm_height_optim(tree,traits,nrates=False):
         tree_utils.assign_sigsq(tree,start)
         nstart = [i.height for i in tree.iternodes() if i.istip == False and i.parent!=None]
         start = start + nstart
-        #single = optimize.fmin_bfgs(calc_like_nodes,start,args=(tree,traits,nrates),full_output=True,disp=True)
-        bounds = [(0.0,100000.0)]*len(start)
-        opt = optimize.fmin_l_bfgs_b(calc_like_sigsq_nodes,start,approx_grad = True,bounds =bounds,args=(tree,traits,nrates))
-        aic1 = 2. * (1+single[1])
-        aic[aic1]= tree.get_newick_repr(True)
-        assign_node_heights(single[0][1:],tree)
-        return opt 
+        opt = optimize.fmin_bfgs(calc_like_sigsq_nodes,start,args=(tree,traits,nrates),full_output=True,disp=True)
+        #bounds = [(0.0,100000.0)]*len(start)
+        #opt = optimize.fmin_l_bfgs_b(calc_like_sigsq_nodes,start,approx_grad = True,bounds =bounds,args=(tree,traits,nrates))
+        #aic1 = 2. * (1+single[1])
+        #aic[aic1]= tree.get_newick_repr(True)
+        tree_utils.assign_node_heights(opt[0][1:],tree)
+        return [tree.get_newick_repr(True),opt]
     elif nrates == False: ##estimate node heights with fixed rate
         tree_utils.assign_node_nums(tree)
         tree_utils.init_heights(tree)
-        tree_utils.assign_sigsq(tree)
+        tree_utils.assign_sigsq(tree,[0.5])
         start = [i.height for i in tree.iternodes() if i.istip == False and i.parent!=None]
-        print start
         opt = optimize.fmin_bfgs(calc_like_nodes,start,args=(tree,traits),full_output=True,disp=True)
-        #print tree.get_newick_repr(True)
-        return opt
+        return [tree.get_newick_repr(True),opt]
 
 def calc_like_sigsq_nodes(ht,tree,traits,nrates):
     for i in ht:
@@ -41,7 +41,7 @@ def calc_like_sigsq_nodes(ht,tree,traits,nrates):
             return LARGE
         z += 1
     if nrates == 1:
-        tree_utils.assign_sigsq(tree,ht[0])
+        tree_utils.assign_sigsq(tree,[ht[0]])
     elif nrates > 1:
         tree_utils.assign_sigsq(tree,ht[0:nrates])
     bad = tree_utils.assign_node_heights(ht[nrates:],tree)
@@ -65,11 +65,50 @@ def calc_like_nodes(ht,tree,traits):
     if bad:
         return LARGE
     try:
-        val = -calc_bm_likelihood.bm_prune(tree,traits)
+        ll = -calc_bm_likelihood.bm_prune(tree,traits)
     except:
         return LARGE
     #print ht[0] 
     #print (val,ht)
-    return val
+    return ll
+
+def calc_like_strat_bm(p,tree,strat,traits,nrates=1): #p[0] should be lambda, p[1:nrates] = sig2
+    for i in p:
+        if i < 0:
+            return LARGE
+    hstart = nrates+1
+    if nrates == 1:
+        tree_utils.assign_sigsq(tree,[p[1]])
+    elif nrates > 1:
+        tree_utils.assign_sigsq(tree,p[1:nrates])
+
+    bad = tree_utils.assign_node_heights(p[hstart:],tree)
+    if bad:
+        return LARGE
+    try:
+        sll = -stratoML.hr97_loglike(tree,p[0])
+        bmll = -calc_bm_likelihood.bm_prune(tree,traits)
+        ll = sll+bmll
+    except:
+        return LARGE
+    return ll
+
+def optim_strat_bm(tree,strat,traits,nrates = 1):
+    hstart = nrates+1
+    tree_utils.assign_node_nums(tree)
+    lamstart = [random.uniform(0.1,1)]
+    sigstart = [random.uniform(0.01,2) for i in range(nrates)]
+    nstart = [i.height for i in tree.iternodes(order = 0) if i.istip == False and i != tree]
+    start = lamstart+sigstart+nstart
+    #opt = optimize.fmin_bfgs(calc_like_strat_bm,start,args =(tree,strat,traits),full_output=True,disp=True)
+    bounds = [(0.0,100000.0)]*len(start)
+    opt = optimize.fmin_l_bfgs_b(calc_like_strat_bm,start,approx_grad = True,bounds =bounds,args=(tree,strat,traits))
+    tree_utils.assign_node_heights(opt[0][hstart:],tree)
+    return [tree,opt]
+
+
+
+
+
 
 

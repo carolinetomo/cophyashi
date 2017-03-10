@@ -22,8 +22,8 @@ def bm_prune(tree,traits):
                 cur_var = brlens[0]+brlens[1]
                 curlike =((-0.5)* ((math.log(2*math.pi*j.sigsq))+(math.log(cur_var))+(math.pow(contrast,2)/(j.sigsq*cur_var))))
                 node_likes.append(curlike)
-                temp_charst = (((1/brlens[0])*child_charst[0])+((1/brlens[1])*child_charst[1]))/((1/brlens[0])+(1/brlens[1]))
-                #temp_charst = ((brlens[1]*child_charst[0])+(brlens[0]*child_charst[1]))/(sum(brlens))
+                #temp_charst = (((1/brlens[0])*child_charst[0])+((1/brlens[1])*child_charst[1]))/((1/brlens[0])+(1/brlens[1]))
+                temp_charst = ((brlens[1]*child_charst[0])+(brlens[0]*child_charst[1]))/(sum(brlens))
                 temp_brlen = j.length+((brlens[0]*brlens[1])/(brlens[0]+brlens[1]))
                 #[k.remove_child for k in j.children]
                 j.charst = temp_charst

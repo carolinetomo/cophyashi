@@ -52,4 +52,4 @@ def optim_lambda_heights(tree,strat):
     start += [i.height for i in tree.iternodes() if i.istip == False and i != tree]
     opt = optimize.fmin_bfgs(calc_like_strat,start,args=(tree,strat),full_output = True, disp = True)
     tree_utils.assign_node_heights(opt[0][1:],tree)
-    return tree
+    return [tree,opt]
