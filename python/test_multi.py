@@ -1,6 +1,7 @@
 import calc_bm_likelihood as brownian
 import phylo3
 from scipy import optimize
+import node_opt
 
 opth=True
 z = "MEDUSA"
@@ -20,7 +21,8 @@ traits = brownian.read_traits("../test_data/traits.0.nex")#multi_traits_t6_t7_t9
 
 brownian.tip_dates(tree,"../test_data/sim_tip_dates.csv",1)
 print tree.get_newick_repr(True)
-a = brownian.find_shifts(tree, traits,opt_nodes=opth,search=z,stop=s)
+#a = brownian.find_shifts(tree, traits,opt_nodes=opth,search=z,stop=s)
+a =node_opt.bm_height_optim(tree,traits) 
 print a
 #print [[i.label,i.rate_class] for i in a[1].iternodes()] 
 

@@ -20,8 +20,8 @@ def init_heights(tree,strat=False):
                 #print [j.height for j in i.children],i.height,[(j.label,j.height) for j in i.children]
             else:
                 i.height = max([j.height for j in i.children])+0.1
-        elif strat == False:
-            i.height = max([j.height for j in i.children])+1.1
+        else:
+            i.height = max([j.height for j in i.children])+0.1
     for i in tree.iternodes():
         if i == tree:
             continue
