@@ -120,9 +120,9 @@ def optim_strat_bm(tree,strat,traits,nrates = 1):
     sigstart = [random.uniform(0.01,2) for i in range(nrates)]
     nstart = [i.height for i in tree.iternodes(order = 0) if i.istip == False and i != tree]
     start = lamstart+sigstart+nstart
-    #opt = optimize.fmin_bfgs(calc_like_strat_bm,start,args =(tree,strat,traits),full_output=True,disp=True)
-    bounds = [(0.0,100000.0)]*len(start)
-    opt = optimize.fmin_l_bfgs_b(calc_like_strat_bm,start,approx_grad = True,bounds =bounds,args=(tree,strat,traits))
+    opt = optimize.fmin_bfgs(calc_like_strat_bm,start,args =(tree,strat,traits),full_output=True,disp=True)
+    #bounds = [(0.0,100000.0)]*len(start)
+    #opt = optimize.fmin_l_bfgs_b(calc_like_strat_bm,start,approx_grad = True,bounds =bounds,args=(tree,strat,traits))
     tree_utils.assign_node_heights(opt[0][hstart:],tree)
     return [tree,opt]
 
