@@ -7,7 +7,7 @@ tree = tree_utils.read_tree("../test_data/fossils_strat.tre")
 ranges = tree_utils.read_strat("../test_data/fossils_strat.txt")
 tree_utils.match_strat(tree,ranges)
 
-traits = tree_utils.read_traits("../test_data/paleo_BM.csv")
+traits = tree_utils.read_traits("../test_data/fossils_strat.traits.csv")
 
 tree_utils.tip_dates(tree,"../test_data/fossils_strat.tips.txt",27)
 tree_utils.assign_sigsq(tree,[0.7])

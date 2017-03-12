@@ -9,12 +9,6 @@ LARGE = 10000000000
 def hr97_loglike(tree,lam):
     lik = []
     for i in tree.leaves():
-        if i.occurrences == []:
-            continue
-        if i.occurrences[0] == "NA" or i.occurrences == None: #TODO figure out what to do with ghost lineages
-            continue
-        #elif len(i.occurrences) == 1 and i.occurrences[0]: 
-        #    continue
         tf = i.parent.height
         tl = i.height
         if len(i.occurrences) > 1:
@@ -29,7 +23,9 @@ def hr97_loglike(tree,lam):
             #print str(top)+" "+str(bot)
             loglik = top-bot
         elif len(i.occurrences) == 1:
-            loglik = math.log(1/(abs(tl-tf)))
+            loglik = lam*math.exp(-lam*(abs(tl-tf)))
+        elif i.occurrences[0] == "NA" or i.occurrences == None:
+            loglik = lam*(abs(tl-tf))
         lik.append(loglik)
     return sum(lik)
 

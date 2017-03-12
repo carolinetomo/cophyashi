@@ -35,7 +35,23 @@ def assign_node_nums(tree):
         else:
             i.number = num
             num += 1
-    return tree
+
+def assign_branch_nums(tree):
+    num = 0
+    for i in tree.iternodes(order=0):
+        if i == tree:
+            continue
+        i.number = num
+        num +=1
+
+def assign_brlens(l,tree):
+    for i in tree.iternodes(order = 0):
+        if i.parent == None:
+            continue
+        i.length = l[i.number]
+        if i.length <0 :
+            return True
+    return False
 
 def assign_node_heights(h,tree):
     for i in tree.iternodes(order=0):
@@ -67,7 +83,6 @@ def tip_dates(tree,dates,root_height):
 def match_traits_tips(tree,traits,number):
     for i in tree.leaves():
         i.charst = traits[i.label][number]
-    return tree
 
 def read_strat(stratfl):
     ran = {}
@@ -75,8 +90,10 @@ def read_strat(stratfl):
         spls = i.strip().split("\t")
         t = spls[0]
         s = [float(i) for i in spls[1:] if i != "NA"]
-        #print s
-        ran[t]=s
+        if s == []:
+            ran[t] = ["NA"]
+        else:
+            ran[t]=s
     return ran
 
 def match_strat(tree,strat):
@@ -86,6 +103,7 @@ def match_strat(tree,strat):
 
 def read_tree(treefl):
     nwk = open(treefl,"r").readlines()[0].strip()
+    print nwk
     tree = tree_reader.read_tree_string(nwk)
     for i in tree.iternodes():
         i.old_length = i.length
