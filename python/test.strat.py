@@ -3,7 +3,7 @@ import stratoML
 import calc_bm_likelihood as brownian
 import node_opt
 
-tree = tree_utils.read_tree("../test_data/fossils_strat.ur.tre2")
+tree = tree_utils.read_tree("../test_data/fossils_strat.tre")
 ranges = tree_utils.read_strat("../test_data/fossils_strat.txt")
 tree_utils.match_strat(tree,ranges)
 ranges = None

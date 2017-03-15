@@ -25,9 +25,9 @@ def hr97_loglike(tree,lam):
             #print str(top)+" "+str(bot)
             loglik = top-bot
         elif len(i.occurrences) == 1:
-            loglik = lam*math.exp(-lam*(abs(tl-tf)))
+            loglik = math.log(lam)+(-lam*(abs(tl-tf)))
         elif i.occurrences[0] == "NA" or i.occurrences == None:
-            loglik = lam*(abs(tl-tf))
+            loglik = math.log(lam)+math.log((abs(tl-tf)))
         lik.append(loglik)
     return sum(lik)
 
