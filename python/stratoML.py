@@ -8,7 +8,9 @@ LARGE = 10000000000
 
 def hr97_loglike(tree,lam):
     lik = []
-    for i in tree.leaves():
+    for i in tree.iternodes(order = 1):
+        if i == tree:
+            continue
         tf = i.parent.height
         tl = i.height
         if len(i.occurrences) > 1:
@@ -30,7 +32,7 @@ def hr97_loglike(tree,lam):
     return sum(lik)
 
 def calc_like_strat(p,tree,strat): #p[0] should be lambda, p[1:] is node heights
-    for i in p[1:]:
+    for i in p:
         if i < 0:
             return LARGE
     bad = tree_utils.assign_node_heights(p[1:],tree)
@@ -45,7 +47,7 @@ def calc_like_strat(p,tree,strat): #p[0] should be lambda, p[1:] is node heights
 def optim_lambda_heights(tree,strat):
     tree_utils.assign_node_nums(tree)
     start = [random.uniform(0.1,1)]
-    start += [i.height for i in tree.iternodes() if i.istip == False and i != tree]
+    start += [i.height for i in tree.iternodes(order = 0)]#if i.istip == False]
     opt = optimize.fmin_bfgs(calc_like_strat,start,args=(tree,strat),full_output = True, disp = True)
     tree_utils.assign_node_heights(opt[0][1:],tree)
     return [tree,opt]

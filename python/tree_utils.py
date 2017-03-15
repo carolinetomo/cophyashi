@@ -1,8 +1,10 @@
 import tree_reader
 
-def init_heights(tree,strat=False): 
+def init_heights(tree,strat=False,fixed_root=False): 
     for i in tree.iternodes(order=1):
-        if i.istip or i.parent == None:
+        if i.istip:# or i.parent == None:
+            continue
+        elif i == tree and fixed_root == True:
             continue
         if strat == True:
             o = []
@@ -27,10 +29,44 @@ def init_heights(tree,strat=False):
             continue
         i.length = i.parent.height-i.height
 
-def assign_node_nums(tree):
+def init_heights_strat(tree,fixed_root=False): #TODO: fix negative branchlength problem
+    for i in tree.iternodes(order=1):
+        if i == tree and fixed_root == True:
+            continue
+        elif i.istip and i.occurrences[0] != "NA": 
+            if min(i.occurrences) != 0.0:
+                i.height = min(i.occurrences)- 0.01
+            else:
+                i.height = min(i.occurrences)
+        elif i.istip == False:
+            o = []
+            start = False
+            for j in i.children:
+                if j.occurrences != None and "NA" not in j.occurrences:
+                    if start == False:
+                        o = j.occurrences
+                        #print o
+                        start = True
+                    else:
+                        o = o+j.occurrences
+            if len(o) > 0:
+                i.height = max(o+[j.height for j in i.children]) + 0.1
+                #print [j.height for j in i.children],i.height,[(j.label,j.height) for j in i.children]
+            else:
+                i.height = max([j.height for j in i.children])+0.1
+    for i in tree.iternodes():
+        if i == tree:
+            continue
+        elif i.occurrences[0] == "NA" and i.istip:
+            i.height = i.parent.height - 0.1
+        i.length = i.parent.height-i.height
+
+def assign_node_nums(tree,tips = True,fixed_root = False):
     num = 0
     for i in tree.iternodes(order=0):
-        if i.istip or i == tree:
+        if i.istip and tips == False:
+            continue
+        elif i == tree and fixed_root == True:
             continue
         else:
             i.number = num
@@ -53,14 +89,17 @@ def assign_brlens(l,tree):
             return True
     return False
 
-def assign_node_heights(h,tree):
+def assign_node_heights(h,tree,tips=True,fixed_root=False):
     for i in tree.iternodes(order=0):
-        if i.istip:
+        if i.istip and tips == False:
             i.length = i.parent.height-i.height
             if i.length < 0:
                 return True
-        elif i.parent == None:
-            i.length = 0.01
+        elif fixed_root == True and i == tree:
+            continue
+        elif fixed_root == False and i == tree:
+            i.height = h[i.number]
+            continue
         else:
             i.height = h[i.number]
             i.length = i.parent.height-i.height
@@ -100,10 +139,11 @@ def match_strat(tree,strat):
     for i in tree.iternodes(order=1):
         if i.label in strat.keys():
             i.occurrences = strat[i.label]
+        elif i.occurrences == None:
+            i.occurrences = ["NA"]
 
 def read_tree(treefl):
     nwk = open(treefl,"r").readlines()[0].strip()
-    print nwk
     tree = tree_reader.read_tree_string(nwk)
     for i in tree.iternodes():
         i.old_length = i.length
