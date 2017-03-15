@@ -3,8 +3,8 @@ import stratoML
 import calc_bm_likelihood as brownian
 import node_opt
 
-tree = tree_utils.read_tree("../../../current_projects/hominoid_stratoclad/hominin.mcc.tre")
-ranges = tree_utils.read_strat("../../../current_projects/hominoid_stratoclad/hom_occurrences.csv")
+tree = tree_utils.read_tree("../test_data/fossils_strat.ur.tre2")
+ranges = tree_utils.read_strat("../test_data/fossils_strat.txt")
 tree_utils.match_strat(tree,ranges)
 ranges = None
 

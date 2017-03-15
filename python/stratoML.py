@@ -21,7 +21,7 @@ def hr97_loglike(tree,lam):
             b = math.log(math.pow(lam,num))
             c = -lam*(abs(tl-tf))
             top = a+b+c
-            bot = math.factorial(num-2)
+            bot = math.log(math.factorial(num-2))
             #print str(top)+" "+str(bot)
             loglik = top-bot
         elif len(i.occurrences) == 1:
