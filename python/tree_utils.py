@@ -128,11 +128,13 @@ def read_strat(stratfl):
     for i in open(stratfl,"r"):
         spls = i.strip().split("\t")
         t = spls[0]
-        s = [float(i) for i in spls[1:] if i != "NA"]
+        s = [float(i) for i in spls[1:-1] if i != "NA"]
+        n = spls[-1]
         if s == []:
             ran[t] = ["NA"]
         else:
             ran[t]=s
+            ran[t].append(n)
     return ran
 
 def match_strat(tree,strat):

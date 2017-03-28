@@ -6,8 +6,8 @@ import node_opt
 opth=True
 z = "MEDUSA"
 s = 3
-tree = brownian.read_tree("../test_data/0.mcc.tre")
-traits = brownian.read_traits("../test_data/traits.0.nex")#multi_traits_t6_t7_t9_t10.csv")
+tree = brownian.read_tree("../test_data/HUGE.tre")#0.mcc.tre")
+traits = brownian.read_traits("../test_data/HUGE.csv")#traits.0.nex")#multi_traits_t6_t7_t9_t10.csv")
 
 #for i in tree.iternodes(order=1):
 #    shifts ={}
