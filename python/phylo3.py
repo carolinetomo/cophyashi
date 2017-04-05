@@ -13,7 +13,6 @@ class Node:
         self.parent = None
         self.children = []
         self.nchildren = 0
-        self.excluded_dists = []
         self.comment = None
         self.charst = 0.
         self.sigsq = 0.
@@ -21,6 +20,7 @@ class Node:
         self.height = None#0.
         self.number = 0
         self.occurrences = None
+        self.num_occurrences = None
 
     def get_newick_repr(self,showbl=False,show_rate=False):
         ret = ""

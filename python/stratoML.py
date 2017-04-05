@@ -13,15 +13,15 @@ def hr97_loglike(tree,lam):
             continue
         tf = i.parent.height
         tl = i.height
-        if len(i.occurrences) > 1:
+        nfos = i.num_occurrences
+        if nfos > 1:
             f = max(i.occurrences)
             l = min(i.occurrences)
-            num = len(i.occurrences)
-            a = math.log(math.pow((abs(l-f)),(num-2)))
-            b = math.log(math.pow(lam,num))
+            a = math.log(math.pow((abs(l-f)),(nfos-2)))
+            b = math.log(math.pow(lam,nfos))
             c = -lam*(abs(tl-tf))
             top = a+b+c
-            bot = math.log(math.factorial(num-2))
+            bot = math.log(math.factorial(nfos-2))
             #print str(top)+" "+str(bot)
             loglik = top-bot
         elif len(i.occurrences) == 1:

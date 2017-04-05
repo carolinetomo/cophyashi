@@ -95,6 +95,10 @@ def assign_node_heights(h,tree,tips=True,fixed_root=False):
             i.length = i.parent.height-i.height
             if i.length < 0:
                 return True
+            elif i.height > min(i.occurrences):
+                return True
+            elif i.parent.height < max(i.occurrences):
+                return True
         elif fixed_root == True and i == tree:
             continue
         elif fixed_root == False and i == tree:
@@ -123,6 +127,7 @@ def match_traits_tips(tree,traits,number):
     for i in tree.leaves():
         i.charst = traits[i.label][number]
 
+"""
 def read_strat(stratfl):
     ran = {}
     for i in open(stratfl,"r"):
@@ -136,16 +141,36 @@ def read_strat(stratfl):
             ran[t]=s
             ran[t].append(n)
     return ran
+"""
+
+def read_strat(stratfl):
+    ran = {}
+    for i in open(stratfl,"r"):
+        spls = i.strip().split("\t")
+        t = spls[0]
+        s = [float(i) for i in spls[1:-1] if i != "NA"]
+        n = float(spls[-1])
+        if s == []:
+            ran[t] = ["NA"]
+        else:
+            ran[t]=s
+            ran[t].append(n)
+    return ran
 
 def match_strat(tree,strat):
     for i in tree.iternodes(order=1):
         if i.label in strat.keys():
-            i.occurrences = strat[i.label]
+            i.occurrences = strat[i.label][0:-1]
+            i.num_occurrences = strat[i.label][-1]
         elif i.occurrences == None:
             i.occurrences = ["NA"]
+            i.num_occurrences=0
 
-def read_tree(treefl):
-    nwk = open(treefl,"r").readlines()[0].strip()
+def read_tree(in_tree,nwk=False):
+    if nwk == False:
+        nwk = open(in_tree,"r").readlines()[0].strip()
+    else:
+        nwk = in_tree
     tree = tree_reader.read_tree_string(nwk)
     for i in tree.iternodes():
         i.old_length = i.length
