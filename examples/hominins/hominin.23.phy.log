@@ -1,0 +1,1332 @@
+IQ-TREE multicore version 1.5.4 for Linux 64-bit built Apr  2 2017
+Copyright (c) 2011-2017 by Bui Quang Minh, Nguyen Lam Tung,
+Olga Chernomor, Heiko Schmidt, and Arndt von Haeseler.
+
+Host:    notanarch (AVX2, FMA3, 7 GB RAM)
+Command: iqtree-omp -s examples/hominins/hominin.23.phy -st MORPH -nt 2 -m MK+ASC -z examples/hominins/hominin.ML.tretree_set.trees
+Seed:    772897 (Using SPRNG - Scalable Parallel Random Number Generator)
+Time:    Wed Apr  5 11:00:39 2017
+Kernel:  AVX+FMA - 2 threads (4 CPU cores detected)
+
+Reading alignment file examples/hominins/hominin.23.phy ... Phylip format detected
+Alignment most likely contains 6-state morphological data
+Alignment has 23 sequences with 391 columns and 378 patterns (282 informative sites, 41 constant sites)
+                            Gap/Ambiguity  Composition  p-value
+   1  Gorilla_gorilla              24.55%    failed      0.00%
+   2  Pan_troglodytes              29.92%    failed      0.00%
+   3  Sahelanthropus_tchadensis    84.91%    passed     40.97%
+   4  Ardipithecus_ramidus         91.82%    passed     77.08%
+   5  Australopithecus_anamensis   88.75%    passed     90.04%
+   6  Australopithecus_afarensis   35.04%    failed      1.31%
+   7  Australopithecus_africanus   23.79%    passed     57.57%
+   8  Australopithecus_garhi       87.72%    passed     92.20%
+   9  Kenyanthropus_platyops       91.30%    passed     72.36%
+  10  Paranthropus_robustus        37.34%    failed      0.02%
+  11  Paranthropus_boisei          25.83%    failed      0.08%
+  12  Paranthropus_aethiopicus     53.96%    passed     87.64%
+  13  Australopithecus_sediba      62.92%    passed      9.59%
+  14  Homo_habilis                 27.37%    passed     71.01%
+  15  Homo_rudolfensis             42.97%    passed     83.66%
+  16  Homo_ergaster                19.95%    passed     34.59%
+  17  Homo_erectus                 46.04%    passed     49.57%
+  18  Homo_heidelbergensis         53.20%    failed      2.28%
+  19  Homo_neanderthalensis        54.48%    passed     21.47%
+  20  Homo_floresiensis            89.26%    passed     78.80%
+  21  Homo_sapiens                 34.27%    passed     12.74%
+  22  Homo_antecessor              83.63%    passed     61.51%
+  23  Homo_dmanisi                 66.75%    passed     45.11%
+WARNING: 12 sequences contain more than 50% gaps/ambiguity
+****  TOTAL                        54.60%  6 sequences failed composition chi2 test (p-value<5%; df=5)
+Creating fast initial parsimony tree by random order stepwise addition...
+0.001 seconds, parsimony score: 700 (based on 282 informative sites)
+For your convenience alignment with variable sites printed to examples/hominins/hominin.23.phy.varsites.phy
+ERROR: Invalid use of +ASC because of 41 invariant sites in the alignment
+
+******************************************************
+CHECKPOINT: Resuming analysis from examples/hominins/hominin.23.phy.ckp.gz
+
+IQ-TREE multicore version 1.5.4 for Linux 64-bit built Apr  2 2017
+Copyright (c) 2011-2017 by Bui Quang Minh, Nguyen Lam Tung,
+Olga Chernomor, Heiko Schmidt, and Arndt von Haeseler.
+
+Host:    notanarch (AVX2, FMA3, 7 GB RAM)
+Command: iqtree-omp -s examples/hominins/hominin.23.phy -st MORPH -nt 2 -m MK+ASC -z examples/hominins/hominin.ML.tretree_set.trees
+Seed:    772897 (Using SPRNG - Scalable Parallel Random Number Generator)
+Time:    Wed Apr  5 11:27:48 2017
+Kernel:  AVX+FMA - 2 threads (4 CPU cores detected)
+
+Reading alignment file examples/hominins/hominin.23.phy ... Phylip format detected
+Alignment most likely contains 6-state morphological data
+Alignment has 23 sequences with 391 columns and 378 patterns (282 informative sites, 41 constant sites)
+                            Gap/Ambiguity  Composition  p-value
+   1  Gorilla_gorilla              24.55%    failed      0.00%
+   2  Pan_troglodytes              29.92%    failed      0.00%
+   3  Sahelanthropus_tchadensis    84.91%    passed     40.97%
+   4  Ardipithecus_ramidus         91.82%    passed     77.08%
+   5  Australopithecus_anamensis   88.75%    passed     90.04%
+   6  Australopithecus_afarensis   35.04%    failed      1.31%
+   7  Australopithecus_africanus   23.79%    passed     57.57%
+   8  Australopithecus_garhi       87.72%    passed     92.20%
+   9  Kenyanthropus_platyops       91.30%    passed     72.36%
+  10  Paranthropus_robustus        37.34%    failed      0.02%
+  11  Paranthropus_boisei          25.83%    failed      0.08%
+  12  Paranthropus_aethiopicus     53.96%    passed     87.64%
+  13  Australopithecus_sediba      62.92%    passed      9.59%
+  14  Homo_habilis                 27.37%    passed     71.01%
+  15  Homo_rudolfensis             42.97%    passed     83.66%
+  16  Homo_ergaster                19.95%    passed     34.59%
+  17  Homo_erectus                 46.04%    passed     49.57%
+  18  Homo_heidelbergensis         53.20%    failed      2.28%
+  19  Homo_neanderthalensis        54.48%    passed     21.47%
+  20  Homo_floresiensis            89.26%    passed     78.80%
+  21  Homo_sapiens                 34.27%    passed     12.74%
+  22  Homo_antecessor              83.63%    passed     61.51%
+  23  Homo_dmanisi                 66.75%    passed     45.11%
+WARNING: 12 sequences contain more than 50% gaps/ambiguity
+****  TOTAL                        54.60%  6 sequences failed composition chi2 test (p-value<5%; df=5)
+
+CHECKPOINT: Initial tree restored
+For your convenience alignment with variable sites printed to examples/hominins/hominin.23.phy.varsites.phy
+ERROR: Invalid use of +ASC because of 41 invariant sites in the alignment
+
+******************************************************
+CHECKPOINT: Resuming analysis from examples/hominins/hominin.23.phy.ckp.gz
+
+IQ-TREE multicore version 1.5.4 for Linux 64-bit built Apr  2 2017
+Copyright (c) 2011-2017 by Bui Quang Minh, Nguyen Lam Tung,
+Olga Chernomor, Heiko Schmidt, and Arndt von Haeseler.
+
+Host:    notanarch (AVX2, FMA3, 7 GB RAM)
+Command: iqtree-omp -s examples/hominins/hominin.23.phy -st MORPH -nt 2 -m MK -z examples/hominins/hominin.ML.tretree_set.trees
+Seed:    772897 (Using SPRNG - Scalable Parallel Random Number Generator)
+Time:    Wed Apr  5 11:38:00 2017
+Kernel:  AVX+FMA - 2 threads (4 CPU cores detected)
+
+WARNING: Command-line argument `MK` differs from checkpoint `MK+ASC`
+WARNING: Command-line differs from checkpoint!
+Reading alignment file examples/hominins/hominin.23.phy ... Phylip format detected
+Alignment most likely contains 6-state morphological data
+Alignment has 23 sequences with 391 columns and 378 patterns (282 informative sites, 41 constant sites)
+                            Gap/Ambiguity  Composition  p-value
+   1  Gorilla_gorilla              24.55%    failed      0.00%
+   2  Pan_troglodytes              29.92%    failed      0.00%
+   3  Sahelanthropus_tchadensis    84.91%    passed     40.97%
+   4  Ardipithecus_ramidus         91.82%    passed     77.08%
+   5  Australopithecus_anamensis   88.75%    passed     90.04%
+   6  Australopithecus_afarensis   35.04%    failed      1.31%
+   7  Australopithecus_africanus   23.79%    passed     57.57%
+   8  Australopithecus_garhi       87.72%    passed     92.20%
+   9  Kenyanthropus_platyops       91.30%    passed     72.36%
+  10  Paranthropus_robustus        37.34%    failed      0.02%
+  11  Paranthropus_boisei          25.83%    failed      0.08%
+  12  Paranthropus_aethiopicus     53.96%    passed     87.64%
+  13  Australopithecus_sediba      62.92%    passed      9.59%
+  14  Homo_habilis                 27.37%    passed     71.01%
+  15  Homo_rudolfensis             42.97%    passed     83.66%
+  16  Homo_ergaster                19.95%    passed     34.59%
+  17  Homo_erectus                 46.04%    passed     49.57%
+  18  Homo_heidelbergensis         53.20%    failed      2.28%
+  19  Homo_neanderthalensis        54.48%    passed     21.47%
+  20  Homo_floresiensis            89.26%    passed     78.80%
+  21  Homo_sapiens                 34.27%    passed     12.74%
+  22  Homo_antecessor              83.63%    passed     61.51%
+  23  Homo_dmanisi                 66.75%    passed     45.11%
+WARNING: 12 sequences contain more than 50% gaps/ambiguity
+****  TOTAL                        54.60%  6 sequences failed composition chi2 test (p-value<5%; df=5)
+
+CHECKPOINT: Initial tree restored
+
+NOTE: 0 MB RAM (0 GB) is required!
+Estimate model parameters (epsilon = 0.100)
+1. Initial log-likelihood: -4324.088
+Optimal log-likelihood: -4160.195
+Parameters optimization took 1 rounds (0.042 sec)
+Computing ML distances based on estimated model parameters... 0.000 sec
+WARNING: Some pairwise ML distances are too long (saturated)
+Computing BIONJ tree...
+0.001 seconds
+Log-likelihood of BIONJ tree: -4201.708
+--------------------------------------------------------------------
+|             INITIALIZING CANDIDATE TREE SET                      |
+--------------------------------------------------------------------
+Generating 98 parsimony trees... 0.045 second
+Computing log-likelihood of 98 initial trees ... 0.233 seconds
+Current best score: -4135.084
+
+Do NNI search on 20 best initial trees
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 1: -4127.516
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 3: -4127.246
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 5: -4126.914
+Iteration 10 / LogL: -4131.453 / Time: 0h:0m:0s
+Iteration 20 / LogL: -4132.546 / Time: 0h:0m:0s
+Finish initializing candidate tree set (15)
+Current best tree score: -4126.914 / CPU time: 0.543
+Number of iterations: 20
+--------------------------------------------------------------------
+|               OPTIMIZING CANDIDATE TREE SET                      |
+--------------------------------------------------------------------
+Iteration 30 / LogL: -4127.549 / Time: 0h:0m:0s (0h:0m:2s left)
+UPDATE BEST LOG-LIKELIHOOD: -4126.911
+Iteration 40 / LogL: -4126.911 / Time: 0h:0m:1s (0h:0m:1s left)
+UPDATE BEST LOG-LIKELIHOOD: -4126.910
+Iteration 50 / LogL: -4134.584 / Time: 0h:0m:1s (0h:0m:1s left)
+Iteration 60 / LogL: -4126.955 / Time: 0h:0m:1s (0h:0m:1s left)
+Iteration 70 / LogL: -4128.576 / Time: 0h:0m:1s (0h:0m:0s left)
+Iteration 80 / LogL: -4127.414 / Time: 0h:0m:1s (0h:0m:0s left)
+Estimate model parameters (epsilon = 0.100)
+UPDATE BEST LOG-LIKELIHOOD: -4126.860
+Iteration 90 / LogL: -4129.218 / Time: 0h:0m:1s (0h:0m:0s left)
+Iteration 100 / LogL: -4127.013 / Time: 0h:0m:2s (0h:0m:0s left)
+TREE SEARCH COMPLETED AFTER 106 ITERATIONS / Time: 0h:0m:2s
+
+--------------------------------------------------------------------
+|                    FINALIZING TREE SEARCH                        |
+--------------------------------------------------------------------
+Performs final model parameters optimization
+Estimate model parameters (epsilon = 0.010)
+1. Initial log-likelihood: -4126.860
+Optimal log-likelihood: -4126.856
+Parameters optimization took 1 rounds (0.002 sec)
+BEST SCORE FOUND : -4126.856
+Total tree length: 4.462
+
+Total number of iterations: 106
+CPU time used for tree search: 4.456 sec (0h:0m:4s)
+Wall-clock time used for tree search: 2.237 sec (0h:0m:2s)
+Total CPU time used: 4.544 sec (0h:0m:4s)
+Total wall-clock time used: 2.313 sec (0h:0m:2s)
+
+Reading trees in examples/hominins/hominin.ML.tretree_set.trees ...
+1119 trees detected
+Tree 1 / LogL: -4132.538
+Tree 2 / LogL: -4300.812
+Tree 3 / LogL: -4148.561
+Tree 4 / LogL: -4137.137
+Tree 5 / LogL: -4129.708
+Tree 6 / LogL: -4140.210
+Tree 7 / LogL: -4130.743
+Tree 8 / LogL: -4126.897
+Tree 9 / LogL: -4131.384
+Tree 10 / LogL: -4135.011
+Tree 11 / LogL: -4129.046
+Tree 12 / LogL: -4131.887
+Tree 13 / LogL: -4127.306
+Tree 14 / LogL: -4348.230
+Tree 15 / LogL: -4138.271
+Tree 16 / LogL: -4136.447
+Tree 17 / LogL: -4314.689
+Tree 18 / LogL: -4138.340
+Tree 19 / LogL: -4128.077
+Tree 20 / LogL: -4175.923
+Tree 21 / LogL: -4129.002
+Tree 22 / LogL: -4137.219
+Tree 23 / LogL: -4133.984
+Tree 24 / LogL: -4288.292
+Tree 25 / LogL: -4132.993
+Tree 26 / LogL: -4126.960
+Tree 27 / LogL: -4132.285
+Tree 28 / LogL: -4232.924
+Tree 29 / LogL: -4132.628
+Tree 30 / LogL: -4134.867
+Tree 31 / LogL: -4196.298
+Tree 32 / LogL: -4174.394
+Tree 33 / LogL: -4130.640
+Tree 34 / LogL: -4131.032
+Tree 35 / LogL: -4160.768
+Tree 36 / LogL: -4130.640
+Tree 37 / LogL: -4136.447
+Tree 38 / LogL: -4159.389
+Tree 39 / LogL: -4128.222
+Tree 40 / LogL: -4149.885
+Tree 41 / LogL: -4216.669
+Tree 42 / LogL: -4132.628
+Tree 43 / LogL: -4135.497
+Tree 44 / LogL: -4176.954
+Tree 45 / LogL: -4149.885
+Tree 46 / LogL: -4133.129
+Tree 47 / LogL: -4150.644
+Tree 48 / LogL: -4129.704
+Tree 49 / LogL: -4218.399
+Tree 50 / LogL: -4368.802
+Tree 51 / LogL: -4129.238
+Tree 52 / LogL: -4195.430
+Tree 53 / LogL: -4212.097
+Tree 54 / LogL: -4130.547
+Tree 55 / LogL: -4138.782
+Tree 56 / LogL: -4139.652
+Tree 57 / LogL: -4131.384
+Tree 58 / LogL: -4245.986
+Tree 59 / LogL: -4266.565
+Tree 60 / LogL: -4177.540
+Tree 61 / LogL: -4202.295
+Tree 62 / LogL: -4136.274
+Tree 63 / LogL: -4132.285
+Tree 64 / LogL: -4289.405
+Tree 65 / LogL: -4137.616
+Tree 66 / LogL: -4300.283
+Tree 67 / LogL: -4220.285
+Tree 68 / LogL: -4138.271
+Tree 69 / LogL: -4129.046
+Tree 70 / LogL: -4130.640
+Tree 71 / LogL: -4261.483
+Tree 72 / LogL: -4269.204
+Tree 73 / LogL: -4133.984
+Tree 74 / LogL: -4127.513
+Tree 75 / LogL: -4132.081
+Tree 76 / LogL: -4151.853
+Tree 77 / LogL: -4127.368
+Tree 78 / LogL: -4201.345
+Tree 79 / LogL: -4195.430
+Tree 80 / LogL: -4135.606
+Tree 81 / LogL: -4286.255
+Tree 82 / LogL: -4133.984
+Tree 83 / LogL: -4132.993
+Tree 84 / LogL: -4128.378
+Tree 85 / LogL: -4169.431
+Tree 86 / LogL: -4205.970
+Tree 87 / LogL: -4201.110
+Tree 88 / LogL: -4336.068
+Tree 89 / LogL: -4140.358
+Tree 90 / LogL: -4235.336
+Tree 91 / LogL: -4266.398
+Tree 92 / LogL: -4130.640
+Tree 93 / LogL: -4319.271
+Tree 94 / LogL: -4219.575
+Tree 95 / LogL: -4137.824
+Tree 96 / LogL: -4127.513
+Tree 97 / LogL: -4250.733
+Tree 98 / LogL: -4163.954
+Tree 99 / LogL: -4151.269
+Tree 100 / LogL: -4163.130
+Tree 101 / LogL: -4148.884
+Tree 102 / LogL: -4156.016
+Tree 103 / LogL: -4217.087
+Tree 104 / LogL: -4243.742
+Tree 105 / LogL: -4128.077
+Tree 106 / LogL: -4129.002
+Tree 107 / LogL: -4136.112
+Tree 108 / LogL: -4149.672
+Tree 109 / LogL: -4146.701
+Tree 110 / LogL: -4136.432
+Tree 111 / LogL: -4138.340
+Tree 112 / LogL: -4177.817
+Tree 113 / LogL: -4161.214
+Tree 114 / LogL: -4161.152
+Tree 115 / LogL: -4201.145
+Tree 116 / LogL: -4202.378
+Tree 117 / LogL: -4138.059
+Tree 118 / LogL: -4179.420
+Tree 119 / LogL: -4176.793
+Tree 120 / LogL: -4354.791
+Tree 121 / LogL: -4129.002
+Tree 122 / LogL: -4264.501
+Tree 123 / LogL: -4141.077
+Tree 124 / LogL: -4146.568
+Tree 125 / LogL: -4270.425
+Tree 126 / LogL: -4324.774
+Tree 127 / LogL: -4182.308
+Tree 128 / LogL: -4135.996
+Tree 129 / LogL: -4137.781
+Tree 130 / LogL: -4143.442
+Tree 131 / LogL: -4295.756
+Tree 132 / LogL: -4176.480
+Tree 133 / LogL: -4194.296
+Tree 134 / LogL: -4355.672
+Tree 135 / LogL: -4175.885
+Tree 136 / LogL: -4216.322
+Tree 137 / LogL: -4178.516
+Tree 138 / LogL: -4253.988
+Tree 139 / LogL: -4129.002
+Tree 140 / LogL: -4195.618
+Tree 141 / LogL: -4126.897
+Tree 142 / LogL: -4292.577
+Tree 143 / LogL: -4266.398
+Tree 144 / LogL: -4188.215
+Tree 145 / LogL: -4131.887
+Tree 146 / LogL: -4139.432
+Tree 147 / LogL: -4132.993
+Tree 148 / LogL: -4166.402
+Tree 149 / LogL: -4163.719
+Tree 150 / LogL: -4223.286
+Tree 151 / LogL: -4239.119
+Tree 152 / LogL: -4138.046
+Tree 153 / LogL: -4188.341
+Tree 154 / LogL: -4305.772
+Tree 155 / LogL: -4196.870
+Tree 156 / LogL: -4137.299
+Tree 157 / LogL: -4246.734
+Tree 158 / LogL: -4210.402
+Tree 159 / LogL: -4227.463
+Tree 160 / LogL: -4205.334
+Tree 161 / LogL: -4148.583
+Tree 162 / LogL: -4300.182
+Tree 163 / LogL: -4205.420
+Tree 164 / LogL: -4157.271
+Tree 165 / LogL: -4281.854
+Tree 166 / LogL: -4206.634
+Tree 167 / LogL: -4146.792
+Tree 168 / LogL: -4139.986
+Tree 169 / LogL: -4319.121
+Tree 170 / LogL: -4235.154
+Tree 171 / LogL: -4164.048
+Tree 172 / LogL: -4140.839
+Tree 173 / LogL: -4188.341
+Tree 174 / LogL: -4205.362
+Tree 175 / LogL: -4149.666
+Tree 176 / LogL: -4313.169
+Tree 177 / LogL: -4127.306
+Tree 178 / LogL: -4277.198
+Tree 179 / LogL: -4172.745
+Tree 180 / LogL: -4172.227
+Tree 181 / LogL: -4178.210
+Tree 182 / LogL: -4264.588
+Tree 183 / LogL: -4247.496
+Tree 184 / LogL: -4233.008
+Tree 185 / LogL: -4165.825
+Tree 186 / LogL: -4235.032
+Tree 187 / LogL: -4132.285
+Tree 188 / LogL: -4133.129
+Tree 189 / LogL: -4228.012
+Tree 190 / LogL: -4172.571
+Tree 191 / LogL: -4364.302
+Tree 192 / LogL: -4177.950
+Tree 193 / LogL: -4249.593
+Tree 194 / LogL: -4234.195
+Tree 195 / LogL: -4144.670
+Tree 196 / LogL: -4136.447
+Tree 197 / LogL: -4346.895
+Tree 198 / LogL: -4132.603
+Tree 199 / LogL: -4254.375
+Tree 200 / LogL: -4171.774
+Tree 201 / LogL: -4221.957
+Tree 202 / LogL: -4380.013
+Tree 203 / LogL: -4210.470
+Tree 204 / LogL: -4297.648
+Tree 205 / LogL: -4126.897
+Tree 206 / LogL: -4146.532
+Tree 207 / LogL: -4183.747
+Tree 208 / LogL: -4165.126
+Tree 209 / LogL: -4271.589
+Tree 210 / LogL: -4167.692
+Tree 211 / LogL: -4316.950
+Tree 212 / LogL: -4150.616
+Tree 213 / LogL: -4163.010
+Tree 214 / LogL: -4132.993
+Tree 215 / LogL: -4138.851
+Tree 216 / LogL: -4244.063
+Tree 217 / LogL: -4167.340
+Tree 218 / LogL: -4253.963
+Tree 219 / LogL: -4199.480
+Tree 220 / LogL: -4139.735
+Tree 221 / LogL: -4269.251
+Tree 222 / LogL: -4215.278
+Tree 223 / LogL: -4173.613
+Tree 224 / LogL: -4288.659
+Tree 225 / LogL: -4156.574
+Tree 226 / LogL: -4309.587
+Tree 227 / LogL: -4322.080
+Tree 228 / LogL: -4128.222
+Tree 229 / LogL: -4167.360
+Tree 230 / LogL: -4139.791
+Tree 231 / LogL: -4158.667
+Tree 232 / LogL: -4130.547
+Tree 233 / LogL: -4150.904
+Tree 234 / LogL: -4129.708
+Tree 235 / LogL: -4222.252
+Tree 236 / LogL: -4289.695
+Tree 237 / LogL: -4212.559
+Tree 238 / LogL: -4142.737
+Tree 239 / LogL: -4158.170
+Tree 240 / LogL: -4130.640
+Tree 241 / LogL: -4140.512
+Tree 242 / LogL: -4218.478
+Tree 243 / LogL: -4264.501
+Tree 244 / LogL: -4129.704
+Tree 245 / LogL: -4139.540
+Tree 246 / LogL: -4132.151
+Tree 247 / LogL: -4139.489
+Tree 248 / LogL: -4181.069
+Tree 249 / LogL: -4199.942
+Tree 250 / LogL: -4145.269
+Tree 251 / LogL: -4129.238
+Tree 252 / LogL: -4172.558
+Tree 253 / LogL: -4247.360
+Tree 254 / LogL: -4150.994
+Tree 255 / LogL: -4200.145
+Tree 256 / LogL: -4137.616
+Tree 257 / LogL: -4242.166
+Tree 258 / LogL: -4132.826
+Tree 259 / LogL: -4138.851
+Tree 260 / LogL: -4156.278
+Tree 261 / LogL: -4242.411
+Tree 262 / LogL: -4352.710
+Tree 263 / LogL: -4134.857
+Tree 264 / LogL: -4141.392
+Tree 265 / LogL: -4262.653
+Tree 266 / LogL: -4147.955
+Tree 267 / LogL: -4205.326
+Tree 268 / LogL: -4155.326
+Tree 269 / LogL: -4239.120
+Tree 270 / LogL: -4127.368
+Tree 271 / LogL: -4166.028
+Tree 272 / LogL: -4185.074
+Tree 273 / LogL: -4166.205
+Tree 274 / LogL: -4131.032
+Tree 275 / LogL: -4140.066
+Tree 276 / LogL: -4126.960
+Tree 277 / LogL: -4143.000
+Tree 278 / LogL: -4195.430
+Tree 279 / LogL: -4148.561
+Tree 280 / LogL: -4148.648
+Tree 281 / LogL: -4166.328
+Tree 282 / LogL: -4170.914
+Tree 283 / LogL: -4330.074
+Tree 284 / LogL: -4244.169
+Tree 285 / LogL: -4135.606
+Tree 286 / LogL: -4146.701
+Tree 287 / LogL: -4215.820
+Tree 288 / LogL: -4283.268
+Tree 289 / LogL: -4159.131
+Tree 290 / LogL: -4336.397
+Tree 291 / LogL: -4249.243
+Tree 292 / LogL: -4137.137
+Tree 293 / LogL: -4149.191
+Tree 294 / LogL: -4228.794
+Tree 295 / LogL: -4250.765
+Tree 296 / LogL: -4143.446
+Tree 297 / LogL: -4289.776
+Tree 298 / LogL: -4130.743
+Tree 299 / LogL: -4155.375
+Tree 300 / LogL: -4346.167
+Tree 301 / LogL: -4165.898
+Tree 302 / LogL: -4189.806
+Tree 303 / LogL: -4209.680
+Tree 304 / LogL: -4336.068
+Tree 305 / LogL: -4136.274
+Tree 306 / LogL: -4166.347
+Tree 307 / LogL: -4144.478
+Tree 308 / LogL: -4159.870
+Tree 309 / LogL: -4156.016
+Tree 310 / LogL: -4139.540
+Tree 311 / LogL: -4175.214
+Tree 312 / LogL: -4312.703
+Tree 313 / LogL: -4234.222
+Tree 314 / LogL: -4127.306
+Tree 315 / LogL: -4150.841
+Tree 316 / LogL: -4166.053
+Tree 317 / LogL: -4134.929
+Tree 318 / LogL: -4165.890
+Tree 319 / LogL: -4223.962
+Tree 320 / LogL: -4139.363
+Tree 321 / LogL: -4212.007
+Tree 322 / LogL: -4150.313
+Tree 323 / LogL: -4331.816
+Tree 324 / LogL: -4360.583
+Tree 325 / LogL: -4131.032
+Tree 326 / LogL: -4127.368
+Tree 327 / LogL: -4212.048
+Tree 328 / LogL: -4156.249
+Tree 329 / LogL: -4171.702
+Tree 330 / LogL: -4170.560
+Tree 331 / LogL: -4191.264
+Tree 332 / LogL: -4156.894
+Tree 333 / LogL: -4292.085
+Tree 334 / LogL: -4198.231
+Tree 335 / LogL: -4362.031
+Tree 336 / LogL: -4132.285
+Tree 337 / LogL: -4139.097
+Tree 338 / LogL: -4162.747
+Tree 339 / LogL: -4167.970
+Tree 340 / LogL: -4154.668
+Tree 341 / LogL: -4135.266
+Tree 342 / LogL: -4261.036
+Tree 343 / LogL: -4179.800
+Tree 344 / LogL: -4139.643
+Tree 345 / LogL: -4149.344
+Tree 346 / LogL: -4229.390
+Tree 347 / LogL: -4237.971
+Tree 348 / LogL: -4161.110
+Tree 349 / LogL: -4207.040
+Tree 350 / LogL: -4191.424
+Tree 351 / LogL: -4148.762
+Tree 352 / LogL: -4144.676
+Tree 353 / LogL: -4244.124
+Tree 354 / LogL: -4126.960
+Tree 355 / LogL: -4223.923
+Tree 356 / LogL: -4264.111
+Tree 357 / LogL: -4157.372
+Tree 358 / LogL: -4150.644
+Tree 359 / LogL: -4223.839
+Tree 360 / LogL: -4137.137
+Tree 361 / LogL: -4132.081
+Tree 362 / LogL: -4132.538
+Tree 363 / LogL: -4134.284
+Tree 364 / LogL: -4170.303
+Tree 365 / LogL: -4143.908
+Tree 366 / LogL: -4242.853
+Tree 367 / LogL: -4239.064
+Tree 368 / LogL: -4217.516
+Tree 369 / LogL: -4244.124
+Tree 370 / LogL: -4200.104
+Tree 371 / LogL: -4227.607
+Tree 372 / LogL: -4138.892
+Tree 373 / LogL: -4247.436
+Tree 374 / LogL: -4283.308
+Tree 375 / LogL: -4214.069
+Tree 376 / LogL: -4187.103
+Tree 377 / LogL: -4249.099
+Tree 378 / LogL: -4305.398
+Tree 379 / LogL: -4228.012
+Tree 380 / LogL: -4212.407
+Tree 381 / LogL: -4306.438
+Tree 382 / LogL: -4260.765
+Tree 383 / LogL: -4132.993
+Tree 384 / LogL: -4137.616
+Tree 385 / LogL: -4154.408
+Tree 386 / LogL: -4277.014
+Tree 387 / LogL: -4343.852
+Tree 388 / LogL: -4144.138
+Tree 389 / LogL: -4126.960
+Tree 390 / LogL: -4155.740
+Tree 391 / LogL: -4137.476
+Tree 392 / LogL: -4211.224
+Tree 393 / LogL: -4168.473
+Tree 394 / LogL: -4156.469
+Tree 395 / LogL: -4143.741
+Tree 396 / LogL: -4145.561
+Tree 397 / LogL: -4261.927
+Tree 398 / LogL: -4221.884
+Tree 399 / LogL: -4136.447
+Tree 400 / LogL: -4151.604
+Tree 401 / LogL: -4228.989
+Tree 402 / LogL: -4206.563
+Tree 403 / LogL: -4175.800
+Tree 404 / LogL: -4159.564
+Tree 405 / LogL: -4276.289
+Tree 406 / LogL: -4199.654
+Tree 407 / LogL: -4171.690
+Tree 408 / LogL: -4214.798
+Tree 409 / LogL: -4160.649
+Tree 410 / LogL: -4381.185
+Tree 411 / LogL: -4152.932
+Tree 412 / LogL: -4144.346
+Tree 413 / LogL: -4135.497
+Tree 414 / LogL: -4138.189
+Tree 415 / LogL: -4253.467
+Tree 416 / LogL: -4392.792
+Tree 417 / LogL: -4303.772
+Tree 418 / LogL: -4132.538
+Tree 419 / LogL: -4152.315
+Tree 420 / LogL: -4133.156
+Tree 421 / LogL: -4235.288
+Tree 422 / LogL: -4288.806
+Tree 423 / LogL: -4206.471
+Tree 424 / LogL: -4364.126
+Tree 425 / LogL: -4269.014
+Tree 426 / LogL: -4152.981
+Tree 427 / LogL: -4193.948
+Tree 428 / LogL: -4218.322
+Tree 429 / LogL: -4274.829
+Tree 430 / LogL: -4148.561
+Tree 431 / LogL: -4257.905
+Tree 432 / LogL: -4245.951
+Tree 433 / LogL: -4143.908
+Tree 434 / LogL: -4223.748
+Tree 435 / LogL: -4167.104
+Tree 436 / LogL: -4128.378
+Tree 437 / LogL: -4335.654
+Tree 438 / LogL: -4154.307
+Tree 439 / LogL: -4263.633
+Tree 440 / LogL: -4367.008
+Tree 441 / LogL: -4139.104
+Tree 442 / LogL: -4202.752
+Tree 443 / LogL: -4335.794
+Tree 444 / LogL: -4251.270
+Tree 445 / LogL: -4200.169
+Tree 446 / LogL: -4222.106
+Tree 447 / LogL: -4322.116
+Tree 448 / LogL: -4134.910
+Tree 449 / LogL: -4254.346
+Tree 450 / LogL: -4156.416
+Tree 451 / LogL: -4136.447
+Tree 452 / LogL: -4309.763
+Tree 453 / LogL: -4226.772
+Tree 454 / LogL: -4165.769
+Tree 455 / LogL: -4148.241
+Tree 456 / LogL: -4147.138
+Tree 457 / LogL: -4148.177
+Tree 458 / LogL: -4238.826
+Tree 459 / LogL: -4258.154
+Tree 460 / LogL: -4222.963
+Tree 461 / LogL: -4322.309
+Tree 462 / LogL: -4378.768
+Tree 463 / LogL: -4171.877
+Tree 464 / LogL: -4178.043
+Tree 465 / LogL: -4202.422
+Tree 466 / LogL: -4340.940
+Tree 467 / LogL: -4226.841
+Tree 468 / LogL: -4129.704
+Tree 469 / LogL: -4171.442
+Tree 470 / LogL: -4249.098
+Tree 471 / LogL: -4163.534
+Tree 472 / LogL: -4331.428
+Tree 473 / LogL: -4127.306
+Tree 474 / LogL: -4291.841
+Tree 475 / LogL: -4180.895
+Tree 476 / LogL: -4304.163
+Tree 477 / LogL: -4139.652
+Tree 478 / LogL: -4249.006
+Tree 479 / LogL: -4217.491
+Tree 480 / LogL: -4220.728
+Tree 481 / LogL: -4262.904
+Tree 482 / LogL: -4135.606
+Tree 483 / LogL: -4157.937
+Tree 484 / LogL: -4146.552
+Tree 485 / LogL: -4142.317
+Tree 486 / LogL: -4182.486
+Tree 487 / LogL: -4160.813
+Tree 488 / LogL: -4160.242
+Tree 489 / LogL: -4309.360
+Tree 490 / LogL: -4233.461
+Tree 491 / LogL: -4279.395
+Tree 492 / LogL: -4261.493
+Tree 493 / LogL: -4198.136
+Tree 494 / LogL: -4143.279
+Tree 495 / LogL: -4231.952
+Tree 496 / LogL: -4183.923
+Tree 497 / LogL: -4146.416
+Tree 498 / LogL: -4137.579
+Tree 499 / LogL: -4322.786
+Tree 500 / LogL: -4191.775
+Tree 501 / LogL: -4157.662
+Tree 502 / LogL: -4297.668
+Tree 503 / LogL: -4136.447
+Tree 504 / LogL: -4203.060
+Tree 505 / LogL: -4249.768
+Tree 506 / LogL: -4168.346
+Tree 507 / LogL: -4160.283
+Tree 508 / LogL: -4244.771
+Tree 509 / LogL: -4211.473
+Tree 510 / LogL: -4178.888
+Tree 511 / LogL: -4205.362
+Tree 512 / LogL: -4256.693
+Tree 513 / LogL: -4288.595
+Tree 514 / LogL: -4146.044
+Tree 515 / LogL: -4286.802
+Tree 516 / LogL: -4238.013
+Tree 517 / LogL: -4143.000
+Tree 518 / LogL: -4240.929
+Tree 519 / LogL: -4132.081
+Tree 520 / LogL: -4222.936
+Tree 521 / LogL: -4271.971
+Tree 522 / LogL: -4289.604
+Tree 523 / LogL: -4167.703
+Tree 524 / LogL: -4293.108
+Tree 525 / LogL: -4285.268
+Tree 526 / LogL: -4299.907
+Tree 527 / LogL: -4317.948
+Tree 528 / LogL: -4134.430
+Tree 529 / LogL: -4236.122
+Tree 530 / LogL: -4149.885
+Tree 531 / LogL: -4324.770
+Tree 532 / LogL: -4132.538
+Tree 533 / LogL: -4182.102
+Tree 534 / LogL: -4250.116
+Tree 535 / LogL: -4307.336
+Tree 536 / LogL: -4144.329
+Tree 537 / LogL: -4127.306
+Tree 538 / LogL: -4140.203
+Tree 539 / LogL: -4135.606
+Tree 540 / LogL: -4368.153
+Tree 541 / LogL: -4244.063
+Tree 542 / LogL: -4298.762
+Tree 543 / LogL: -4182.000
+Tree 544 / LogL: -4253.963
+Tree 545 / LogL: -4128.378
+Tree 546 / LogL: -4342.033
+Tree 547 / LogL: -4139.188
+Tree 548 / LogL: -4224.398
+Tree 549 / LogL: -4156.630
+Tree 550 / LogL: -4132.299
+Tree 551 / LogL: -4176.182
+Tree 552 / LogL: -4165.040
+Tree 553 / LogL: -4130.206
+Tree 554 / LogL: -4145.648
+Tree 555 / LogL: -4211.470
+Tree 556 / LogL: -4133.109
+Tree 557 / LogL: -4202.318
+Tree 558 / LogL: -4170.518
+Tree 559 / LogL: -4150.585
+Tree 560 / LogL: -4230.736
+Tree 561 / LogL: -4247.751
+Tree 562 / LogL: -4242.115
+Tree 563 / LogL: -4133.109
+Tree 564 / LogL: -4194.865
+Tree 565 / LogL: -4188.086
+Tree 566 / LogL: -4138.389
+Tree 567 / LogL: -4149.462
+Tree 568 / LogL: -4295.800
+Tree 569 / LogL: -4235.332
+Tree 570 / LogL: -4161.245
+Tree 571 / LogL: -4282.963
+Tree 572 / LogL: -4161.057
+Tree 573 / LogL: -4242.830
+Tree 574 / LogL: -4139.985
+Tree 575 / LogL: -4262.412
+Tree 576 / LogL: -4306.947
+Tree 577 / LogL: -4143.813
+Tree 578 / LogL: -4136.991
+Tree 579 / LogL: -4153.866
+Tree 580 / LogL: -4136.943
+Tree 581 / LogL: -4221.752
+Tree 582 / LogL: -4180.976
+Tree 583 / LogL: -4257.123
+Tree 584 / LogL: -4179.037
+Tree 585 / LogL: -4351.133
+Tree 586 / LogL: -4200.442
+Tree 587 / LogL: -4379.461
+Tree 588 / LogL: -4240.980
+Tree 589 / LogL: -4140.512
+Tree 590 / LogL: -4138.271
+Tree 591 / LogL: -4198.123
+Tree 592 / LogL: -4229.057
+Tree 593 / LogL: -4211.967
+Tree 594 / LogL: -4170.574
+Tree 595 / LogL: -4286.834
+Tree 596 / LogL: -4188.679
+Tree 597 / LogL: -4324.774
+Tree 598 / LogL: -4252.554
+Tree 599 / LogL: -4364.691
+Tree 600 / LogL: -4372.844
+Tree 601 / LogL: -4138.991
+Tree 602 / LogL: -4244.379
+Tree 603 / LogL: -4221.198
+Tree 604 / LogL: -4242.428
+Tree 605 / LogL: -4173.739
+Tree 606 / LogL: -4305.403
+Tree 607 / LogL: -4241.872
+Tree 608 / LogL: -4199.813
+Tree 609 / LogL: -4282.678
+Tree 610 / LogL: -4139.652
+Tree 611 / LogL: -4337.900
+Tree 612 / LogL: -4282.300
+Tree 613 / LogL: -4190.988
+Tree 614 / LogL: -4342.691
+Tree 615 / LogL: -4202.928
+Tree 616 / LogL: -4220.683
+Tree 617 / LogL: -4283.533
+Tree 618 / LogL: -4216.410
+Tree 619 / LogL: -4200.936
+Tree 620 / LogL: -4245.746
+Tree 621 / LogL: -4248.518
+Tree 622 / LogL: -4159.103
+Tree 623 / LogL: -4166.212
+Tree 624 / LogL: -4196.298
+Tree 625 / LogL: -4149.782
+Tree 626 / LogL: -4207.048
+Tree 627 / LogL: -4224.067
+Tree 628 / LogL: -4305.557
+Tree 629 / LogL: -4294.757
+Tree 630 / LogL: -4244.653
+Tree 631 / LogL: -4237.853
+Tree 632 / LogL: -4160.832
+Tree 633 / LogL: -4139.111
+Tree 634 / LogL: -4147.038
+Tree 635 / LogL: -4156.576
+Tree 636 / LogL: -4199.059
+Tree 637 / LogL: -4137.119
+Tree 638 / LogL: -4241.411
+Tree 639 / LogL: -4246.726
+Tree 640 / LogL: -4244.070
+Tree 641 / LogL: -4242.575
+Tree 642 / LogL: -4245.249
+Tree 643 / LogL: -4148.884
+Tree 644 / LogL: -4176.741
+Tree 645 / LogL: -4176.015
+Tree 646 / LogL: -4157.673
+Tree 647 / LogL: -4314.812
+Tree 648 / LogL: -4216.317
+Tree 649 / LogL: -4357.439
+Tree 650 / LogL: -4208.918
+Tree 651 / LogL: -4243.929
+Tree 652 / LogL: -4283.930
+Tree 653 / LogL: -4234.197
+Tree 654 / LogL: -4228.570
+Tree 655 / LogL: -4183.112
+Tree 656 / LogL: -4232.942
+Tree 657 / LogL: -4144.810
+Tree 658 / LogL: -4347.949
+Tree 659 / LogL: -4259.814
+Tree 660 / LogL: -4219.299
+Tree 661 / LogL: -4144.157
+Tree 662 / LogL: -4175.820
+Tree 663 / LogL: -4196.298
+Tree 664 / LogL: -4217.010
+Tree 665 / LogL: -4309.808
+Tree 666 / LogL: -4136.447
+Tree 667 / LogL: -4135.606
+Tree 668 / LogL: -4254.375
+Tree 669 / LogL: -4283.016
+Tree 670 / LogL: -4165.983
+Tree 671 / LogL: -4296.145
+Tree 672 / LogL: -4203.263
+Tree 673 / LogL: -4271.387
+Tree 674 / LogL: -4276.046
+Tree 675 / LogL: -4132.628
+Tree 676 / LogL: -4309.050
+Tree 677 / LogL: -4286.303
+Tree 678 / LogL: -4151.604
+Tree 679 / LogL: -4176.608
+Tree 680 / LogL: -4131.816
+Tree 681 / LogL: -4295.923
+Tree 682 / LogL: -4290.309
+Tree 683 / LogL: -4216.496
+Tree 684 / LogL: -4129.046
+Tree 685 / LogL: -4277.032
+Tree 686 / LogL: -4258.176
+Tree 687 / LogL: -4150.068
+Tree 688 / LogL: -4312.854
+Tree 689 / LogL: -4299.814
+Tree 690 / LogL: -4205.352
+Tree 691 / LogL: -4277.936
+Tree 692 / LogL: -4152.164
+Tree 693 / LogL: -4309.050
+Tree 694 / LogL: -4217.311
+Tree 695 / LogL: -4146.045
+Tree 696 / LogL: -4159.639
+Tree 697 / LogL: -4168.171
+Tree 698 / LogL: -4166.328
+Tree 699 / LogL: -4164.048
+Tree 700 / LogL: -4163.623
+Tree 701 / LogL: -4130.743
+Tree 702 / LogL: -4244.762
+Tree 703 / LogL: -4135.669
+Tree 704 / LogL: -4178.841
+Tree 705 / LogL: -4172.083
+Tree 706 / LogL: -4147.332
+Tree 707 / LogL: -4309.734
+Tree 708 / LogL: -4199.687
+Tree 709 / LogL: -4130.547
+Tree 710 / LogL: -4153.881
+Tree 711 / LogL: -4216.952
+Tree 712 / LogL: -4157.673
+Tree 713 / LogL: -4287.940
+Tree 714 / LogL: -4244.772
+Tree 715 / LogL: -4152.180
+Tree 716 / LogL: -4304.301
+Tree 717 / LogL: -4131.032
+Tree 718 / LogL: -4147.277
+Tree 719 / LogL: -4188.452
+Tree 720 / LogL: -4233.127
+Tree 721 / LogL: -4234.900
+Tree 722 / LogL: -4231.911
+Tree 723 / LogL: -4146.850
+Tree 724 / LogL: -4271.457
+Tree 725 / LogL: -4315.726
+Tree 726 / LogL: -4174.787
+Tree 727 / LogL: -4246.814
+Tree 728 / LogL: -4133.670
+Tree 729 / LogL: -4132.628
+Tree 730 / LogL: -4158.562
+Tree 731 / LogL: -4216.940
+Tree 732 / LogL: -4195.430
+Tree 733 / LogL: -4175.724
+Tree 734 / LogL: -4133.984
+Tree 735 / LogL: -4152.008
+Tree 736 / LogL: -4272.653
+Tree 737 / LogL: -4295.215
+Tree 738 / LogL: -4287.254
+Tree 739 / LogL: -4286.834
+Tree 740 / LogL: -4128.378
+Tree 741 / LogL: -4309.808
+Tree 742 / LogL: -4185.381
+Tree 743 / LogL: -4152.056
+Tree 744 / LogL: -4142.533
+Tree 745 / LogL: -4166.132
+Tree 746 / LogL: -4344.534
+Tree 747 / LogL: -4128.378
+Tree 748 / LogL: -4252.554
+Tree 749 / LogL: -4350.082
+Tree 750 / LogL: -4281.943
+Tree 751 / LogL: -4347.441
+Tree 752 / LogL: -4216.775
+Tree 753 / LogL: -4261.483
+Tree 754 / LogL: -4160.820
+Tree 755 / LogL: -4179.345
+Tree 756 / LogL: -4298.584
+Tree 757 / LogL: -4201.920
+Tree 758 / LogL: -4357.295
+Tree 759 / LogL: -4228.175
+Tree 760 / LogL: -4245.372
+Tree 761 / LogL: -4203.567
+Tree 762 / LogL: -4132.628
+Tree 763 / LogL: -4129.761
+Tree 764 / LogL: -4161.622
+Tree 765 / LogL: -4234.195
+Tree 766 / LogL: -4157.890
+Tree 767 / LogL: -4313.679
+Tree 768 / LogL: -4148.354
+Tree 769 / LogL: -4214.714
+Tree 770 / LogL: -4221.426
+Tree 771 / LogL: -4129.238
+Tree 772 / LogL: -4141.068
+Tree 773 / LogL: -4154.083
+Tree 774 / LogL: -4180.372
+Tree 775 / LogL: -4130.743
+Tree 776 / LogL: -4248.804
+Tree 777 / LogL: -4129.708
+Tree 778 / LogL: -4289.597
+Tree 779 / LogL: -4348.915
+Tree 780 / LogL: -4143.345
+Tree 781 / LogL: -4221.012
+Tree 782 / LogL: -4213.319
+Tree 783 / LogL: -4151.027
+Tree 784 / LogL: -4150.756
+Tree 785 / LogL: -4251.501
+Tree 786 / LogL: -4135.945
+Tree 787 / LogL: -4343.852
+Tree 788 / LogL: -4175.966
+Tree 789 / LogL: -4292.101
+Tree 790 / LogL: -4175.427
+Tree 791 / LogL: -4364.126
+Tree 792 / LogL: -4139.863
+Tree 793 / LogL: -4216.821
+Tree 794 / LogL: -4169.431
+Tree 795 / LogL: -4155.352
+Tree 796 / LogL: -4304.301
+Tree 797 / LogL: -4135.497
+Tree 798 / LogL: -4137.642
+Tree 799 / LogL: -4160.463
+Tree 800 / LogL: -4291.222
+Tree 801 / LogL: -4203.748
+Tree 802 / LogL: -4235.384
+Tree 803 / LogL: -4240.457
+Tree 804 / LogL: -4143.851
+Tree 805 / LogL: -4133.984
+Tree 806 / LogL: -4329.660
+Tree 807 / LogL: -4244.920
+Tree 808 / LogL: -4304.800
+Tree 809 / LogL: -4138.055
+Tree 810 / LogL: -4151.592
+Tree 811 / LogL: -4156.315
+Tree 812 / LogL: -4182.332
+Tree 813 / LogL: -4327.966
+Tree 814 / LogL: -4396.230
+Tree 815 / LogL: -4157.267
+Tree 816 / LogL: -4351.848
+Tree 817 / LogL: -4200.415
+Tree 818 / LogL: -4260.826
+Tree 819 / LogL: -4146.790
+Tree 820 / LogL: -4216.854
+Tree 821 / LogL: -4131.811
+Tree 822 / LogL: -4129.704
+Tree 823 / LogL: -4206.499
+Tree 824 / LogL: -4285.600
+Tree 825 / LogL: -4241.046
+Tree 826 / LogL: -4139.652
+Tree 827 / LogL: -4345.833
+Tree 828 / LogL: -4127.796
+Tree 829 / LogL: -4140.139
+Tree 830 / LogL: -4395.868
+Tree 831 / LogL: -4149.202
+Tree 832 / LogL: -4137.003
+Tree 833 / LogL: -4219.493
+Tree 834 / LogL: -4133.129
+Tree 835 / LogL: -4246.947
+Tree 836 / LogL: -4342.357
+Tree 837 / LogL: -4222.062
+Tree 838 / LogL: -4150.245
+Tree 839 / LogL: -4272.636
+Tree 840 / LogL: -4361.915
+Tree 841 / LogL: -4228.245
+Tree 842 / LogL: -4302.747
+Tree 843 / LogL: -4295.078
+Tree 844 / LogL: -4346.722
+Tree 845 / LogL: -4183.747
+Tree 846 / LogL: -4296.975
+Tree 847 / LogL: -4260.238
+Tree 848 / LogL: -4234.222
+Tree 849 / LogL: -4285.895
+Tree 850 / LogL: -4377.740
+Tree 851 / LogL: -4236.531
+Tree 852 / LogL: -4160.811
+Tree 853 / LogL: -4315.013
+Tree 854 / LogL: -4190.786
+Tree 855 / LogL: -4153.992
+Tree 856 / LogL: -4210.767
+Tree 857 / LogL: -4231.652
+Tree 858 / LogL: -4196.299
+Tree 859 / LogL: -4291.579
+Tree 860 / LogL: -4236.722
+Tree 861 / LogL: -4216.731
+Tree 862 / LogL: -4142.885
+Tree 863 / LogL: -4145.967
+Tree 864 / LogL: -4245.269
+Tree 865 / LogL: -4286.923
+Tree 866 / LogL: -4137.969
+Tree 867 / LogL: -4157.187
+Tree 868 / LogL: -4150.385
+Tree 869 / LogL: -4144.735
+Tree 870 / LogL: -4291.577
+Tree 871 / LogL: -4311.660
+Tree 872 / LogL: -4333.468
+Tree 873 / LogL: -4303.621
+Tree 874 / LogL: -4215.516
+Tree 875 / LogL: -4153.922
+Tree 876 / LogL: -4154.307
+Tree 877 / LogL: -4151.986
+Tree 878 / LogL: -4160.484
+Tree 879 / LogL: -4354.792
+Tree 880 / LogL: -4309.491
+Tree 881 / LogL: -4190.817
+Tree 882 / LogL: -4297.908
+Tree 883 / LogL: -4233.452
+Tree 884 / LogL: -4147.038
+Tree 885 / LogL: -4223.962
+Tree 886 / LogL: -4235.641
+Tree 887 / LogL: -4209.991
+Tree 888 / LogL: -4246.987
+Tree 889 / LogL: -4136.009
+Tree 890 / LogL: -4177.494
+Tree 891 / LogL: -4167.105
+Tree 892 / LogL: -4174.954
+Tree 893 / LogL: -4300.812
+Tree 894 / LogL: -4196.656
+Tree 895 / LogL: -4226.841
+Tree 896 / LogL: -4233.882
+Tree 897 / LogL: -4136.830
+Tree 898 / LogL: -4202.752
+Tree 899 / LogL: -4134.654
+Tree 900 / LogL: -4305.656
+Tree 901 / LogL: -4339.941
+Tree 902 / LogL: -4286.880
+Tree 903 / LogL: -4136.906
+Tree 904 / LogL: -4168.520
+Tree 905 / LogL: -4127.368
+Tree 906 / LogL: -4137.616
+Tree 907 / LogL: -4133.984
+Tree 908 / LogL: -4241.412
+Tree 909 / LogL: -4322.786
+Tree 910 / LogL: -4200.042
+Tree 911 / LogL: -4242.377
+Tree 912 / LogL: -4131.384
+Tree 913 / LogL: -4132.285
+Tree 914 / LogL: -4221.102
+Tree 915 / LogL: -4350.215
+Tree 916 / LogL: -4307.344
+Tree 917 / LogL: -4250.441
+Tree 918 / LogL: -4235.079
+Tree 919 / LogL: -4150.937
+Tree 920 / LogL: -4235.156
+Tree 921 / LogL: -4133.427
+Tree 922 / LogL: -4258.269
+Tree 923 / LogL: -4250.781
+Tree 924 / LogL: -4283.995
+Tree 925 / LogL: -4141.166
+Tree 926 / LogL: -4243.214
+Tree 927 / LogL: -4143.498
+Tree 928 / LogL: -4165.874
+Tree 929 / LogL: -4195.326
+Tree 930 / LogL: -4155.325
+Tree 931 / LogL: -4131.602
+Tree 932 / LogL: -4291.313
+Tree 933 / LogL: -4289.279
+Tree 934 / LogL: -4128.222
+Tree 935 / LogL: -4346.560
+Tree 936 / LogL: -4151.918
+Tree 937 / LogL: -4166.220
+Tree 938 / LogL: -4142.835
+Tree 939 / LogL: -4236.177
+Tree 940 / LogL: -4339.945
+Tree 941 / LogL: -4226.228
+Tree 942 / LogL: -4175.100
+Tree 943 / LogL: -4161.636
+Tree 944 / LogL: -4172.284
+Tree 945 / LogL: -4310.272
+Tree 946 / LogL: -4200.169
+Tree 947 / LogL: -4152.164
+Tree 948 / LogL: -4148.648
+Tree 949 / LogL: -4146.415
+Tree 950 / LogL: -4158.253
+Tree 951 / LogL: -4140.342
+Tree 952 / LogL: -4134.785
+Tree 953 / LogL: -4279.395
+Tree 954 / LogL: -4147.820
+Tree 955 / LogL: -4284.464
+Tree 956 / LogL: -4323.140
+Tree 957 / LogL: -4170.002
+Tree 958 / LogL: -4289.100
+Tree 959 / LogL: -4331.512
+Tree 960 / LogL: -4138.864
+Tree 961 / LogL: -4244.256
+Tree 962 / LogL: -4196.298
+Tree 963 / LogL: -4141.748
+Tree 964 / LogL: -4148.770
+Tree 965 / LogL: -4282.576
+Tree 966 / LogL: -4127.513
+Tree 967 / LogL: -4135.978
+Tree 968 / LogL: -4322.080
+Tree 969 / LogL: -4243.455
+Tree 970 / LogL: -4150.093
+Tree 971 / LogL: -4214.677
+Tree 972 / LogL: -4137.476
+Tree 973 / LogL: -4150.841
+Tree 974 / LogL: -4351.848
+Tree 975 / LogL: -4171.742
+Tree 976 / LogL: -4132.285
+Tree 977 / LogL: -4129.708
+Tree 978 / LogL: -4138.340
+Tree 979 / LogL: -4331.117
+Tree 980 / LogL: -4318.200
+Tree 981 / LogL: -4269.892
+Tree 982 / LogL: -4291.603
+Tree 983 / LogL: -4138.322
+Tree 984 / LogL: -4173.333
+Tree 985 / LogL: -4321.528
+Tree 986 / LogL: -4236.181
+Tree 987 / LogL: -4379.395
+Tree 988 / LogL: -4163.205
+Tree 989 / LogL: -4172.108
+Tree 990 / LogL: -4329.737
+Tree 991 / LogL: -4223.245
+Tree 992 / LogL: -4218.184
+Tree 993 / LogL: -4189.330
+Tree 994 / LogL: -4312.730
+Tree 995 / LogL: -4172.948
+Tree 996 / LogL: -4179.074
+Tree 997 / LogL: -4147.332
+Tree 998 / LogL: -4306.640
+Tree 999 / LogL: -4224.174
+Tree 1000 / LogL: -4190.207
+Tree 1001 / LogL: -4349.945
+Tree 1002 / LogL: -4132.060
+Tree 1003 / LogL: -4186.561
+Tree 1004 / LogL: -4174.862
+Tree 1005 / LogL: -4151.898
+Tree 1006 / LogL: -4194.290
+Tree 1007 / LogL: -4134.399
+Tree 1008 / LogL: -4221.198
+Tree 1009 / LogL: -4209.787
+Tree 1010 / LogL: -4223.596
+Tree 1011 / LogL: -4229.390
+Tree 1012 / LogL: -4264.970
+Tree 1013 / LogL: -4207.022
+Tree 1014 / LogL: -4196.235
+Tree 1015 / LogL: -4191.013
+Tree 1016 / LogL: -4131.887
+Tree 1017 / LogL: -4224.139
+Tree 1018 / LogL: -4149.477
+Tree 1019 / LogL: -4377.719
+Tree 1020 / LogL: -4131.329
+Tree 1021 / LogL: -4150.937
+Tree 1022 / LogL: -4190.207
+Tree 1023 / LogL: -4233.304
+Tree 1024 / LogL: -4137.616
+Tree 1025 / LogL: -4129.238
+Tree 1026 / LogL: -4251.648
+Tree 1027 / LogL: -4365.355
+Tree 1028 / LogL: -4167.112
+Tree 1029 / LogL: -4295.053
+Tree 1030 / LogL: -4310.753
+Tree 1031 / LogL: -4133.668
+Tree 1032 / LogL: -4301.492
+Tree 1033 / LogL: -4237.992
+Tree 1034 / LogL: -4282.634
+Tree 1035 / LogL: -4139.081
+Tree 1036 / LogL: -4163.010
+Tree 1037 / LogL: -4149.321
+Tree 1038 / LogL: -4226.542
+Tree 1039 / LogL: -4286.199
+Tree 1040 / LogL: -4174.029
+Tree 1041 / LogL: -4144.522
+Tree 1042 / LogL: -4160.866
+Tree 1043 / LogL: -4248.969
+Tree 1044 / LogL: -4260.826
+Tree 1045 / LogL: -4150.245
+Tree 1046 / LogL: -4135.497
+Tree 1047 / LogL: -4317.179
+Tree 1048 / LogL: -4396.188
+Tree 1049 / LogL: -4211.726
+Tree 1050 / LogL: -4171.328
+Tree 1051 / LogL: -4142.154
+Tree 1052 / LogL: -4372.961
+Tree 1053 / LogL: -4285.536
+Tree 1054 / LogL: -4138.386
+Tree 1055 / LogL: -4269.251
+Tree 1056 / LogL: -4375.695
+Tree 1057 / LogL: -4148.849
+Tree 1058 / LogL: -4143.906
+Tree 1059 / LogL: -4144.448
+Tree 1060 / LogL: -4211.896
+Tree 1061 / LogL: -4160.422
+Tree 1062 / LogL: -4194.082
+Tree 1063 / LogL: -4133.096
+Tree 1064 / LogL: -4216.343
+Tree 1065 / LogL: -4310.820
+Tree 1066 / LogL: -4238.113
+Tree 1067 / LogL: -4148.715
+Tree 1068 / LogL: -4159.384
+Tree 1069 / LogL: -4335.210
+Tree 1070 / LogL: -4285.779
+Tree 1071 / LogL: -4178.335
+Tree 1072 / LogL: -4226.836
+Tree 1073 / LogL: -4157.761
+Tree 1074 / LogL: -4240.786
+Tree 1075 / LogL: -4293.898
+Tree 1076 / LogL: -4195.301
+Tree 1077 / LogL: -4132.570
+Tree 1078 / LogL: -4144.766
+Tree 1079 / LogL: -4345.768
+Tree 1080 / LogL: -4162.448
+Tree 1081 / LogL: -4160.689
+Tree 1082 / LogL: -4340.509
+Tree 1083 / LogL: -4134.989
+Tree 1084 / LogL: -4140.838
+Tree 1085 / LogL: -4128.077
+Tree 1086 / LogL: -4308.949
+Tree 1087 / LogL: -4129.708
+Tree 1088 / LogL: -4240.859
+Tree 1089 / LogL: -4147.863
+Tree 1090 / LogL: -4134.603
+Tree 1091 / LogL: -4301.492
+Tree 1092 / LogL: -4246.814
+Tree 1093 / LogL: -4134.103
+Tree 1094 / LogL: -4334.254
+Tree 1095 / LogL: -4225.359
+Tree 1096 / LogL: -4151.603
+Tree 1097 / LogL: -4280.839
+Tree 1098 / LogL: -4149.886
+Tree 1099 / LogL: -4276.356
+Tree 1100 / LogL: -4172.065
+Tree 1101 / LogL: -4195.301
+Tree 1102 / LogL: -4154.266
+Tree 1103 / LogL: -4316.488
+Tree 1104 / LogL: -4167.717
+Tree 1105 / LogL: -4215.312
+Tree 1106 / LogL: -4177.638
+Tree 1107 / LogL: -4278.699
+Tree 1108 / LogL: -4134.603
+Tree 1109 / LogL: -4143.906
+Tree 1110 / LogL: -4182.332
+Tree 1111 / LogL: -4150.503
+Tree 1112 / LogL: -4223.605
+Tree 1113 / LogL: -4219.849
+Tree 1114 / LogL: -4306.286
+Tree 1115 / LogL: -4147.706
+Tree 1116 / LogL: -4134.217
+Tree 1117 / LogL: -4293.635
+Tree 1118 / LogL: -4151.185
+Tree 1119 / LogL: -4130.640
+Time for evaluating all trees: 7.561 sec.
+
+Analysis results written to: 
+  IQ-TREE report:                examples/hominins/hominin.23.phy.iqtree
+  Maximum-likelihood tree:       examples/hominins/hominin.23.phy.treefile
+  Likelihood distances:          examples/hominins/hominin.23.phy.mldist
+  Evaluated user trees:          examples/hominins/hominin.23.phy.trees
+  Screen log file:               examples/hominins/hominin.23.phy.log
+
+Date and Time: Wed Apr  5 11:38:10 2017

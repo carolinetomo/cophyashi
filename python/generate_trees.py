@@ -38,7 +38,7 @@ for i in range(10000):
     di.append(d.writeNewick(toString=True,spaceAfterComma=False))
 x = f5(di)
 
-outfl = open("tree_set.trees","w")
+outfl = open(sys.argv[1]+"tree_set.trees","w")
 for i in x:
     outfl.write(i)
 """
