@@ -33,14 +33,19 @@ for i in aln_liks.keys():
     ranges = None 
     strat_opt = stratoML.optim_lambda_heights(tree,ranges)
     strat_heights_tree = strat_opt[0].get_newick_repr(True)
-    strat_like = float(strat_opt[1][1])
+    strat_like = -float(strat_opt[1][1])
     #strat_liks[strat_heights_tree] = float(strat_like)
     combined_like = strat_like + aln_liks[i]
     if best == None:
-        best = (combined_like,strat_heights_tree) 
+        best = (combined_like,strat_heights_tree)
     else:
-        if best[0] < strat_like:
+        if best[0] < combined_like:
             best = (combined_like,strat_heights_tree)
+            print best
 
+treefl = open(aln+".tre","w")
+treefl.write(best[1])
+treefl.close()
 print best
+
 
